@@ -1,0 +1,5 @@
+RewriteEngine On
+# Redirect all requests to the dist folder
+RewriteCond %{REQUEST_URI} !^/dist/
+RewriteCond %{REQUEST_URI} !^/index\.php$
+RewriteRule ^(.*)$ /dist/$1 [L]
