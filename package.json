@@ -40,7 +40,7 @@
       "npm run format --",
       "npm run lint:fix --"
     ],
-    "*.{php}": [
+    "!(*.html|*.css|*.js|*.ts)": [
       "npm run format --"
     ]
   },
