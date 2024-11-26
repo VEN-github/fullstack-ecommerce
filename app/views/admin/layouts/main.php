@@ -1,0 +1,40 @@
+<?php
+
+use App\Core\Application;
+
+$title = "Home";
+
+?>
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="INVI" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+  <!-- if development -->
+  <script type="module" src="http://localhost:5173/@vite/client"></script>
+  <script type="module" src="http://localhost:5173/src/main.ts"></script>
+  <title><?= $title ?></title>
+</head>
+
+<body>
+
+  <div class="bg-gray-50 antialiased dark:bg-gray-900">
+    <?php require_once Application::$ROOT_DIR . '/views/admin/partials/nav.php'; ?>
+    <?php require_once Application::$ROOT_DIR . '/views/admin/partials/sidebar.php'; ?>
+    <main class="min-h-screen bg-red-500 p-4 pt-20 md:ml-64">
+      {{content}}
+    </main>
+    <?php require_once Application::$ROOT_DIR . '/views/admin/partials/footer.php'; ?>
+  </div>
+</body>
+
+</html>
