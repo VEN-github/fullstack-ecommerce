@@ -2,8 +2,7 @@
 
 use App\Core\Application;
 
-$title = "Home";
-
+$title = 'Home';
 ?>
 
 <!doctype html>
@@ -18,10 +17,10 @@ $title = "Home";
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="INVI" />
   <link rel="manifest" href="/site.webmanifest" />
-  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
   <!-- if development -->
   <script type="module" src="http://localhost:5173/@vite/client"></script>
   <script type="module" src="http://localhost:5173/src/main.ts"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>s
   <title><?= $title ?></title>
 </head>
 
@@ -30,7 +29,7 @@ $title = "Home";
   <div class="bg-gray-50 antialiased dark:bg-gray-900">
     <?php require_once Application::$ROOT_DIR . '/views/admin/partials/nav.php'; ?>
     <?php require_once Application::$ROOT_DIR . '/views/admin/partials/sidebar.php'; ?>
-    <main class="min-h-screen bg-red-500 p-4 pt-20 md:ml-64">
+    <main class="min-h-screen p-4 pt-20 md:ml-64">
       {{content}}
     </main>
     <?php require_once Application::$ROOT_DIR . '/views/admin/partials/footer.php'; ?>

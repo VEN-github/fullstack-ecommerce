@@ -45,7 +45,6 @@
     ]
   },
   "dependencies": {
-    "flowbite": "^2.5.2",
-    "vite-plugin-php": "^1.0.67"
+    "flowbite": "^2.5.2"
   }
 }

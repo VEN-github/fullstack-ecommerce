@@ -12,7 +12,6 @@ vendor
 dist
 dist-ssr
 *.local
-.php-tmp
 
 # Editor directories and files
 .vscode/*
