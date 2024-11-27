@@ -14,6 +14,7 @@ class Application
     public Response $response;
     public Router $router;
     public static Application $app;
+    public Controller $controller;
     /**
      * __construct
      *
@@ -32,5 +33,15 @@ class Application
     public function run()
     {
         echo $this->router->resolve();
+    }
+
+    public function getController()
+    {
+        return $this->controller;
+    }
+
+    public function setController($controller)
+    {
+        $this->controller = $controller;
     }
 }

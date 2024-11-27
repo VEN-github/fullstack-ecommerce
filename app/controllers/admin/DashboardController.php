@@ -13,6 +13,11 @@ class DashboardController extends Controller
 {
   public function index()
   {
-    return $this->render('dashboard/index');
+    $this->setLayout('admin');
+    $params = [
+      'title' => 'Dashboard'
+    ];
+
+    return $this->render('admin/dashboard/index', $params);
   }
 }

@@ -1,8 +1,6 @@
 <?php
 
 use App\Core\Application;
-
-$title = 'Home';
 ?>
 
 <!doctype html>
@@ -19,18 +17,18 @@ $title = 'Home';
   <link rel="manifest" href="/site.webmanifest" />
   <?= vite('src/main.ts') ?>
   <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-  <title><?= $title ?></title>
+  <title><?= $title ?? 'INVI' ?></title>
 </head>
 
 <body>
 
   <div class="bg-gray-50 antialiased dark:bg-gray-900">
-    <?php require_once Application::$ROOT_DIR . '/views/admin/partials/nav.php'; ?>
-    <?php require_once Application::$ROOT_DIR . '/views/admin/partials/sidebar.php'; ?>
+    <?php require_once Application::$ROOT_DIR . '/views/partials/admin/nav.php'; ?>
+    <?php require_once Application::$ROOT_DIR . '/views/partials/admin/sidebar.php'; ?>
     <main class="min-h-screen p-4 pt-20 md:ml-64">
       {{content}}
     </main>
-    <?php require_once Application::$ROOT_DIR . '/views/admin/partials/footer.php'; ?>
+    <?php require_once Application::$ROOT_DIR . '/views/partials/admin/footer.php'; ?>
   </div>
 </body>
 
