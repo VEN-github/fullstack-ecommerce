@@ -17,10 +17,8 @@ $title = 'Home';
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="INVI" />
   <link rel="manifest" href="/site.webmanifest" />
-  <!-- if development -->
-  <script type="module" src="http://localhost:5173/@vite/client"></script>
-  <script type="module" src="http://localhost:5173/src/main.ts"></script>
-  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>s
+  <?= vite('src/main.ts') ?>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
   <title><?= $title ?></title>
 </head>
 
