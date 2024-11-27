@@ -11,8 +11,8 @@
       "App\\": "./app"
     },
     "files": [
-      "app/Helpers/functions.php",
-      "app/Helpers/vite.php"
+      "app/helpers/functions.php",
+      "app/helpers/vite.php"
     ]
   },
   "require": {
