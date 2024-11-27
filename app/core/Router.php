@@ -62,7 +62,7 @@ class Router
 
         if ($callback === false) {
             $this->response->setStatusCode(404);
-            return $this->renderOnlyView('errors/_404', []);
+            return $this->renderView('errors/_404');
         }
         if (is_string($callback)) {
             return $this->renderView($callback);
@@ -90,7 +90,7 @@ class Router
 
     protected function layoutContent($params = [])
     {
-        $layout = Application::$app->controller->layout;
+        $layout = Application::$app->controller->layout ?? 'main';
         foreach ($params as $key => $value) {
             $$key = $value;
         }
