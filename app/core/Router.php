@@ -28,17 +28,27 @@ class Router
 
     public function get($path, $callback)
     {
+        $this->registerRoute('get', $path, $callback);
+    }
+
+    public function post($path, $callback)
+    {
+        $this->registerRoute('post', $path, $callback);
+    }
+
+    public function registerRoute($method, $path, $callback)
+    {
         $normalizedPrefix = $this->prefix ? '/' . trim($this->prefix, '/') : '';
         $normalizedPath = $path === '/' ? '' : '/' . ltrim($path, '/');
 
-        // Combine prefix and path to form the full path
+        // Combine prefix and path to form the full path    
         $fullPath = $normalizedPrefix . $normalizedPath;
 
         // Ensure the root path is properly set as "/"
         $fullPath = $fullPath === '' ? '/' : $fullPath;
 
 
-        $this->routes['get'][$fullPath] = $callback;
+        $this->routes[$method][$fullPath] = $callback;
     }
 
     public function group($prefix, $callback)
@@ -57,7 +67,7 @@ class Router
     public function resolve()
     {
         $path = $this->request->getPath();
-        $method = $this->request->getMethod();
+        $method = $this->request->method();
         $callback = isset($this->routes[$method][$path]) ? $this->routes[$method][$path] : false;
 
         if ($callback === false) {
