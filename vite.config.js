@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
+// https://vitejs.dev/config/
 export default defineConfig({
   build: {
     manifest: true,
@@ -12,5 +14,15 @@ export default defineConfig({
   },
   server: {
     origin: 'http://localhost:5173'
-  }
+  },
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'src/assets/images',
+          dest: 'assets'
+        }
+      ]
+    })
+  ]
 })

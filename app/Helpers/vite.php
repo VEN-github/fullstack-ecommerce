@@ -2,28 +2,42 @@
 
 function vite(string $entry)
 {
-  // Set up the paths and environment variables
-  $dev_server = $_ENV['VITE_DEV_SERVER'] ?? 'http://localhost:5173';
-  $is_dev = $_ENV['APP_ENV'] === 'development';
-  $manifest_path = __DIR__ . '/../../dist/.vite/manifest.json';
-
   // If in development mode, return the dev server script tags
-  if ($is_dev) {
-    return devScripts($dev_server, $entry);
+  if (isDev()) {
+    return devScripts($entry);
   }
 
   // Handle production assets by reading the manifest
-  return getProdAssets($manifest_path, $entry);
+  return getProdAssets($entry);
 }
 
-function devScripts(string $server, string $entry)
+function getDevServer()
 {
-  return "<script type=\"module\" src=\"{$server}/@vite/client\"></script>\n" .
-    "<script type=\"module\" src=\"{$server}/{$entry}\"></script>\n";
+  return $_ENV['VITE_DEV_SERVER'] ?? 'http://localhost:5173';
 }
 
-function getProdAssets(string $manifest_path, string $entry)
+function isDev()
 {
+  return $_ENV['APP_ENV'] === 'development';
+}
+
+function getManifestPath()
+{
+  return __DIR__ . '/../../dist/.vite/manifest.json';
+}
+
+function devScripts(string $entry)
+{
+  $dev_server = getDevServer();
+  return "<script type=\"module\" src=\"{$dev_server}/@vite/client\"></script>\n" .
+    "<script type=\"module\" src=\"{$dev_server}/{$entry}\"></script>\n";
+}
+
+function getProdAssets(string $entry)
+{
+  // Set up the paths and environment variables
+  $manifest_path = getManifestPath();
+
   // Check if the manifest file exists
   if (!file_exists($manifest_path)) {
     throw new \Exception('Vite manifest not found. Did you build the assets?');
@@ -50,4 +64,20 @@ function getProdAssets(string $manifest_path, string $entry)
 function getProdStyles(array $files)
 {
   return empty($files) ? '' : implode("\n", array_map(fn($files) => "<link rel=\"stylesheet\" href=\"/../dist/{$files}\">", $files)) . "\n";
+}
+
+function asset(string $entry)
+{
+  // If in development mode, return the dev server script tags
+  if (isDev()) {
+    return getDevAssets($entry);
+  }
+
+  return '/assets/images/' . $entry;
+}
+
+function getDevAssets(string $entry)
+{
+  $dev_server = getDevServer();
+  return $dev_server . "/src/assets/images/$entry";
 }
