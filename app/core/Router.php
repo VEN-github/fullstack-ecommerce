@@ -13,6 +13,7 @@ class Router
     public Response $response;
     protected array $routes = [];
     protected string $prefix = '';
+
     /**
      * __construct
      *

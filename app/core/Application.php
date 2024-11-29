@@ -15,6 +15,7 @@ class Application
     public Router $router;
     public static Application $app;
     public Controller $controller;
+
     /**
      * __construct
      *

@@ -12,5 +12,5 @@
   <link rel="manifest" href="/site.webmanifest" />
   <?= vite('src/main.ts') ?>
   <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-  <title><?= $title ?? 'INVI' ?></title>
+  <title><?= isset($title) ? "$title | INVI Clothing Co." : 'INVI Clothing Co.' ?></title>
 </head>
