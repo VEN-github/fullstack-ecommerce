@@ -4,7 +4,9 @@ require_once __DIR__ . '/../app/bootstrap.php';
 
 use App\Core\Application;
 
-$app = new Application(dirname(__DIR__) . '/app');
+$config = require_once __DIR__ . '/../app/config/config.php';
+
+$app = new Application(dirname(__DIR__) . '/app', $config);
 
 require_once Application::$ROOT_DIR . '/Routes/routes.php';
 
