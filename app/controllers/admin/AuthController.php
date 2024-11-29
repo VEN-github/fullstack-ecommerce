@@ -4,7 +4,8 @@ namespace App\Controllers\Admin;
 
 use App\Core\Controller;
 use App\Core\Request;
-use App\Models\Login;
+use App\Core\Response;
+use App\Models\Admin;
 
 /**
  * AuthController
@@ -13,26 +14,26 @@ use App\Models\Login;
  */
 class AuthController extends Controller
 {
-  public function index(Request $request)
+  public function index(Request $request, Response $response)
   {
-    $login = new Login();
+    $admin = new Admin();
     $this->setLayout('admin_auth');
 
     if ($request->isPost()) {
-      $login = new Login();
+      $admin->loadData($request->getBody());
 
-      $login->loadData($request->getBody());
-
-      if ($login->validate() && $login->login()) {
-        return 'success';
+      if ($admin->validate() && $admin->login()) {
+        $response->redirect('/admin');
+        return;
       }
+
       return $this->render('admin/auth/login', [
-        'login' => $login
+        'model' => $admin
       ]);
     }
 
     return $this->render('admin/auth/login', [
-      'login' => $login
+      'model' => $admin
     ]);
   }
 }

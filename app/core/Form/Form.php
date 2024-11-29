@@ -22,6 +22,11 @@ class Form
     echo '</form>';
   }
 
+  public function label(Model $model, $attribute)
+  {
+    return new Label($model, $attribute);
+  }
+
   public function field(Model $model, $attribute)
   {
     return new Field($model, $attribute);

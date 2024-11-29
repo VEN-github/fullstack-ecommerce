@@ -32,9 +32,10 @@ class Field
   public function __toString(): string
   {
     return sprintf(
-      '<input type="%s" name="%s" value="%s" class="form-input %s">
+      '<input type="%s" id="%s" name="%s" value="%s" class="form-input %s">
       <span class="text-error text-sm mt-1">%s</span>',
       $this->type,
+      $this->attribute,
       $this->attribute,
       $this->model->{$this->attribute},
       $this->model->hasError($this->attribute) ? 'border-error' : 'border-gray-300',
