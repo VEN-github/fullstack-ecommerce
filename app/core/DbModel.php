@@ -25,7 +25,7 @@ abstract class DbModel extends Model
     $statement = self::prepare("INSERT INTO $tableName (" . implode(',', $attributes) . ") VALUES (" . implode(',', $params) . ")");
 
     foreach ($attributes as $attribute) {
-      $statement->bindValue(":$attribute", $this->$attribute);
+      $statement->bindValue(":$attribute", $this->{$attribute});
     }
 
     $statement->execute();
@@ -46,7 +46,7 @@ abstract class DbModel extends Model
     }
 
     $statement->execute();
-    return $statement->fetchObject(static::class);
+    return $statement->fetch(Application::$app->db->pdo::FETCH_OBJ);
   }
 
   public static function prepare($sql)

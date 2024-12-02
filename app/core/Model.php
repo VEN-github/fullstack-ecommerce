@@ -22,7 +22,7 @@ abstract class Model
   {
     foreach ($data as $key => $value) {
       if (property_exists($this, $key)) {
-        $this->$key = $value;
+        $this->{$key} = $value;
       }
     }
   }
@@ -42,7 +42,7 @@ abstract class Model
   public function validate()
   {
     foreach ($this->rules() as $attribute => $rules) {
-      $value = $this->$attribute;
+      $value = $this->{$attribute};
       foreach ($rules as $rule) {
         $ruleName = $rule;
 
@@ -97,7 +97,7 @@ abstract class Model
     foreach ($params as $key => $value) {
       $message = str_replace("{{$key}}", $value, $message);
     }
-    $this->errors[$attribute][] = $message;
+    $this->addError($attribute, $message);
   }
 
   public function addError(string $attribute, string $message)

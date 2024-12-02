@@ -21,7 +21,7 @@ class Label
       '<label for="%s" class="form-label %s">%s</label>',
       $this->model->getLabel($this->attribute),
       $this->model->hasError($this->attribute) ? 'text-error' : 'text-gray-900',
-      $this->model->labels()[$this->attribute]
+      $this->model->labels()[$this->attribute] ?? $this->attribute
     );
   }
 }
