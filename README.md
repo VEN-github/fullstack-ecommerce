@@ -29,13 +29,44 @@ git clone https://github.com/VEN-github/fullstack-ecommerce.git
 cd fullstack-ecommerce
 ```
 
+### Copy the `.env.example` and named it `.env`
+
+> This contains the environment variables such as **application environment**, **database connection**, and **url**.
+
+```bash
+cp .env.example .env
+```
+
+### Create database
+
+> You may create the database by any method that you prefer.
+> You can use `http://localhost/phpmyadmin` to create your database.
+
+### Install composer packages
+
+```bash
+composer install
+```
+
 ### Install dependencies
 
 ```bash
 npm install
 ```
 
+### Migrate `app/migrations` files
+
+```bash
+php app/migrate.php
+```
+
 ### Start the server
+
+```bash
+php -S localhost:8000 -t public
+```
+
+### Start the client server
 
 ```bash
 npm run dev
@@ -58,3 +89,10 @@ npm run format
 ```bash
 npm run lint:fix
 ```
+
+### Routes
+
+To access the admin panel, you must go to the admin subdomain `localhost:8000/admin`. This will redirect to login page if you have not started any session yet. Here is the admin credentials provided by the seeder:
+
+**Email:** admin@invi.com\
+**Password:** password
