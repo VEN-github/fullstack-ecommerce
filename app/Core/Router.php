@@ -14,13 +14,6 @@ class Router
     protected array $routes = [];
     protected string $prefix = '';
 
-    /**
-     * __construct
-     *
-     * @param  mixed $request
-     * @param  mixed $response
-     * @return void
-     */
     public function __construct(Request $request, Response $response)
     {
         $this->request = $request;
@@ -47,7 +40,6 @@ class Router
 
         // Ensure the root path is properly set as "/"
         $fullPath = $fullPath === '' ? '/' : $fullPath;
-
 
         $this->routes[$method][$fullPath] = $callback;
     }
@@ -79,8 +71,14 @@ class Router
             return $this->renderView($callback);
         }
         if (is_array($callback)) {
-            Application::$app->controller = new $callback[0]();
-            $callback[0] = Application::$app->controller;
+            /** @var \App\Core\Controller $controller */
+            $controller = new $callback[0]();
+            Application::$app->controller = $controller;
+            $controller->action = $callback[1];
+            $callback[0] = $controller;
+
+            // Execute controller-level middlewares
+            $controller->executeMiddlewares();
         }
 
         return call_user_func($callback, $this->request, $this->response);

@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Core\Controller;
+use App\Core\middlewares\AuthMiddleware;
 
 /**
  * DashboardController
@@ -11,6 +12,11 @@ use App\Core\Controller;
  */
 class DashboardController extends Controller
 {
+  public function __construct()
+  {
+    $this->registerMiddleware(new AuthMiddleware(['index']));
+  }
+
   public function index()
   {
     $this->setLayout('admin');
