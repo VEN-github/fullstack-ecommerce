@@ -31,15 +31,16 @@ class Field
 
   public function __toString(): string
   {
+    $error = $this->model->hasError($this->attribute) ? sprintf('<span class="text-error text-sm mt-1">%s</span>', $this->model->getFirstError($this->attribute)) : '';
+
     return sprintf(
-      '<input type="%s" id="%s" name="%s" value="%s" class="form-input %s">
-      <span class="text-error text-sm mt-1">%s</span>',
+      '<input type="%s" id="%s" name="%s" value="%s" class="form-input %s">%s',
       $this->type,
       $this->attribute,
       $this->attribute,
       $this->model->{$this->attribute},
       $this->model->hasError($this->attribute) ? 'border-error' : 'border-gray-300',
-      $this->model->getFirstError($this->attribute)
+      $error
     );
   }
 
