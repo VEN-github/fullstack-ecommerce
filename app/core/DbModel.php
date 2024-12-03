@@ -46,7 +46,7 @@ abstract class DbModel extends Model
     }
 
     $statement->execute();
-    return $statement->fetch(Application::$app->db->pdo::FETCH_OBJ);
+    return $statement->fetchObject(static::class);
   }
 
   public static function prepare($sql)

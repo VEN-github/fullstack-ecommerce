@@ -2,19 +2,21 @@
 
 namespace App\Models;
 
-use App\Core\Application;
-use App\Core\DbModel;
+use App\Core\AdminModel;
 
 /**
- * Login
+ * Admin
  * @author Raven Barrogo <barrogoraven@gmail.com>
  * @package App\Models
  */
-class Admin extends DbModel
+class Admin extends AdminModel
 {
+  public int $id = 0;
+  public string $first_name = '';
+  public string $last_name = '';
   public string $email = '';
   public string $password = '';
-
+  public string $created_at = '';
 
   public function tableName(): string
   {
@@ -24,24 +26,6 @@ class Admin extends DbModel
   public function primaryKey(): string
   {
     return 'id';
-  }
-
-  public function login()
-  {
-    $admin = self::findOne(['email' => $this->email]);
-    if (!$admin) {
-      $this->addError('email', 'Admin does not exist with this email address.');
-      return false;
-    }
-
-    if (!password_verify($this->password, $admin->password)) {
-      $this->addError('password', 'Password is incorrect.');
-      return false;
-    }
-
-    dd($admin);
-
-    return Application::$app->login($admin);
   }
 
   public function rules(): array
@@ -57,11 +41,13 @@ class Admin extends DbModel
     return ['email', 'password'];
   }
 
-  public function labels(): array
+  public function getDisplayName(): string
   {
-    return [
-      'email' => 'Email address',
-      'password' => 'Password',
-    ];
+    return $this->first_name . ' ' . $this->last_name;
+  }
+
+  public function getEmail(): string
+  {
+    return $this->email;
   }
 }

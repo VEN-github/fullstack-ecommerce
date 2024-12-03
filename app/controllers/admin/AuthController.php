@@ -2,38 +2,41 @@
 
 namespace App\Controllers\Admin;
 
+use App\Core\Application;
 use App\Core\Controller;
 use App\Core\Request;
 use App\Core\Response;
-use App\Models\Admin;
+use App\Models\LoginForm;
 
 /**
  * AuthController
  * @author Raven Barrogo <barrogoraven@gmail.com>
- * @package App\Controllers
+ * @package App\Controllers\Admin
  */
 class AuthController extends Controller
 {
   public function index(Request $request, Response $response)
   {
-    $admin = new Admin();
-    $this->setLayout('admin_auth');
+    $loginForm = new LoginForm();
 
     if ($request->isPost()) {
-      $admin->loadData($request->getBody());
+      $loginForm->loadData($request->getBody());
 
-      if ($admin->validate() && $admin->login()) {
+      if ($loginForm->validate() && $loginForm->login()) {
         $response->redirect('/admin');
         return;
       }
-
-      return $this->render('admin/auth/login', [
-        'model' => $admin
-      ]);
     }
 
+    $this->setLayout('admin_auth');
     return $this->render('admin/auth/login', [
-      'model' => $admin
+      'model' => $loginForm
     ]);
+  }
+
+  public function logout(Request $request, Response $response)
+  {
+    Application::$app->logout('admin');
+    $response->redirect('/admin/login');
   }
 }

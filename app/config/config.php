@@ -1,6 +1,7 @@
 <?php
 
 return [
+  'adminClass' => App\Models\Admin::class,
   'database' => [
     'host' => $_ENV['DB_HOST'] ?? 'localhost',
     'port' => $_ENV['DB_PORT'] ?? 3306,

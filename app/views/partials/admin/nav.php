@@ -1,3 +1,9 @@
+<?php
+
+use App\Core\Application;
+
+$admin = Application::$app->admin;
+?>
 <nav
   class="fixed left-0 right-0 top-0 z-50 border-b border-gray-200 bg-white px-4 py-2.5">
   <div class="flex flex-wrap items-center justify-between">
@@ -138,8 +144,8 @@
         class="z-50 my-4 hidden w-56 list-none divide-y divide-gray-100 rounded-xl bg-white text-base shadow"
         id="dropdown">
         <div class="px-4 py-3">
-          <span class="block text-sm font-semibold text-gray-900">Neil Sims</span>
-          <span class="block truncate text-sm text-gray-900">name@flowbite.com</span>
+          <span class="block text-sm font-semibold text-gray-900"><?= $admin->getDisplayName() ?></span>
+          <span class="block truncate text-sm text-gray-900"><?= $admin->getEmail() ?></span>
         </div>
         <ul class="py-1 text-gray-700" aria-labelledby="dropdown">
           <li>
@@ -151,7 +157,7 @@
         <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
           <li>
             <a
-              href="#"
+              href="/admin/logout"
               class="block px-4 py-2 text-sm hover:bg-gray-100">Logout</a>
           </li>
         </ul>
