@@ -6,6 +6,9 @@ import { addDynamicIconSelectors } from '@iconify/tailwind'
 export default {
   content: ['./app/**/*.php', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    fontFamily: {
+      sans: ['Montserrat', 'sans-serif']
+    },
     extend: {
       colors: {
         primary: '#2c3037',

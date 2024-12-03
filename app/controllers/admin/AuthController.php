@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\Core\middlewares\GuestMiddleware;
 use App\Core\Application;
 use App\Core\Controller;
 use App\Core\Request;
@@ -15,6 +16,11 @@ use App\Models\LoginForm;
  */
 class AuthController extends Controller
 {
+  public function __construct()
+  {
+    $this->registerMiddleware(new GuestMiddleware(['index']));
+  }
+
   public function index(Request $request, Response $response)
   {
     $loginForm = new LoginForm();
