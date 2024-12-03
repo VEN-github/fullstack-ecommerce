@@ -1,9 +1,28 @@
 import { defineConfig } from 'vite'
-import usePHP from 'vite-plugin-php'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [usePHP({ entry: ['index.php'] })],
+  build: {
+    manifest: true,
+    rollupOptions: {
+      input: './src/main.ts'
+    },
+    modulePreload: {
+      polyfill: false
+    }
+  },
   server: {
-    port: 8000
-  }
+    origin: 'http://localhost:5173'
+  },
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'src/assets/images',
+          dest: 'assets'
+        }
+      ]
+    })
+  ]
 })

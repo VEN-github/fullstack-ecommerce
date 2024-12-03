@@ -8,15 +8,17 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+vendor
 dist
 dist-ssr
 *.local
-.php-tmp
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
+.env
+.env.production
 .DS_Store
 *.suo
 *.ntvs*

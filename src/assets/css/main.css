@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .form-label {
+    @apply mb-2 block text-sm font-medium;
+  }
+
+  .form-input {
+    @apply block w-full rounded-lg border bg-gray-50 p-2.5 text-gray-900 focus:border-primary focus:ring-primary;
+  }
+
+  .btn {
+    @apply rounded-lg px-5 py-2.5 text-center text-sm font-medium;
+  }
+
+  .btn-primary {
+    @apply bg-secondary text-white hover:bg-secondary/70;
+  }
+}
