@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Core\middlewares;
+namespace App\Core\Middlewares;
 
 use App\Core\Application;
 
 /**
  * AuthMiddleware
  * @author Raven Barrogo <barrogoraven@gmail.com>
- * @package App\Core\middlewares
+ * @package App\Core\Middlewares
  */
 class AuthMiddleware extends BaseMiddleware
 {

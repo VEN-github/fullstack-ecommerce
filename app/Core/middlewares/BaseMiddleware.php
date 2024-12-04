@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Core\middlewares;
+namespace App\Core\Middlewares;
 
 /**
  * BaseMiddleware
  * @author Raven Barrogo <barrogoraven@gmail.com>
- * @package App\Core\middlewares
+ * @package App\Core\Middlewares
  */
 abstract class BaseMiddleware
 {

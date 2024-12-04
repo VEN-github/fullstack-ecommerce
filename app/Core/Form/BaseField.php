@@ -5,11 +5,11 @@ namespace App\Core\Form;
 use App\Core\Model;
 
 /**
- * Label
+ * BaseField
  * @author Raven Barrogo <barrogoraven@gmail.com>
  * @package App\Core\Form
  */
-class Label
+abstract class BaseField
 {
   public Model $model;
   public string $attribute;
@@ -20,13 +20,16 @@ class Label
     $this->attribute = $attribute;
   }
 
+  abstract public function renderInput(): string;
+
   public function __toString(): string
   {
+    $error = $this->model->hasError($this->attribute) ? sprintf('<span class="text-error text-sm mt-1">%s</span>', $this->model->getFirstError($this->attribute)) : '';
+
     return sprintf(
-      '<label for="%s" class="form-label %s">%s</label>',
-      $this->attribute,
-      $this->model->hasError($this->attribute) ? 'text-error' : 'text-gray-900',
-      $this->model->getLabel($this->attribute)
+      '%s%s',
+      $this->renderInput(),
+      $error
     );
   }
 }

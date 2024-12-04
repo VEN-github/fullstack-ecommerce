@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Core;
+namespace App\Core\Database;
 
 use PDO;
+use App\Core\Application;
 
 /**
  * Database
  * @author Raven Barrogo <barrogoraven@gmail.com>
- * @package App\Core
+ * @package App\Core\Database
  */
 class Database
 {

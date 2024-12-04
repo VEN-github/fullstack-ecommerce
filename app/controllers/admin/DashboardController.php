@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Core\Controller;
-use App\Core\middlewares\AuthMiddleware;
+use App\Core\Middlewares\AuthMiddleware;
 
 /**
  * DashboardController

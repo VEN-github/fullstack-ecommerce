@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Core\Database\DbModel;
+
 /**
  * AdminModel
  * @author Raven Barrogo <barrogoraven@gmail.com>

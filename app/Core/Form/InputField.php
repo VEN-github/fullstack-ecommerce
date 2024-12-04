@@ -5,11 +5,11 @@ namespace App\Core\Form;
 use App\Core\Model;
 
 /**
- * Field
+ * InputField
  * @author Raven Barrogo <barrogoraven@gmail.com>
  * @package App\Core\Form
  */
-class Field
+class InputField extends BaseField
 {
   public const TYPE_TEXT = 'text';
   public const TYPE_PASSWORD = 'password';
@@ -19,28 +19,22 @@ class Field
   public const TYPE_DATE = 'date';
 
   public string $type;
-  public Model $model;
-  public string $attribute;
 
   public function __construct(Model $model, string $attribute)
   {
     $this->type = self::TYPE_TEXT;
-    $this->model = $model;
-    $this->attribute = $attribute;
+    parent::__construct($model, $attribute);
   }
 
-  public function __toString(): string
+  public function renderInput(): string
   {
-    $error = $this->model->hasError($this->attribute) ? sprintf('<span class="text-error text-sm mt-1">%s</span>', $this->model->getFirstError($this->attribute)) : '';
-
     return sprintf(
-      '<input type="%s" id="%s" name="%s" value="%s" class="form-input %s">%s',
+      '<input type="%s" id="%s" name="%s" value="%s" class="form-input %s">',
       $this->type,
       $this->attribute,
       $this->attribute,
       $this->model->{$this->attribute},
       $this->model->hasError($this->attribute) ? 'border-error' : 'border-gray-300',
-      $error
     );
   }
 

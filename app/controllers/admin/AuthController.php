@@ -2,7 +2,7 @@
 
 namespace App\Controllers\Admin;
 
-use App\Core\middlewares\GuestMiddleware;
+use App\Core\Middlewares\GuestMiddleware;
 use App\Core\Application;
 use App\Core\Controller;
 use App\Core\Request;

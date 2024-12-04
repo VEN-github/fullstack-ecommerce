@@ -2,7 +2,7 @@
 
 namespace App\Core;
 
-use App\Core\middlewares\BaseMiddleware;
+use App\Core\Middlewares\BaseMiddleware;
 
 /**
  * Controller
@@ -14,7 +14,7 @@ class Controller
   public string $layout = 'main';
   public string $action = '';
   /**
-   * @var \App\Core\middlewares\BaseMiddleware[]
+   * @var \App\Core\Middlewares\BaseMiddleware[]
    */
   protected array $middlewares = [];
 
@@ -25,7 +25,7 @@ class Controller
 
   public function render($view, $params = [])
   {
-    return Application::$app->router->renderView($view, $params);
+    return Application::$app->view->renderView($view, $params);
   }
 
   public function registerMiddleware(BaseMiddleware $middleware)

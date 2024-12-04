@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Core\middlewares;
+namespace App\Core\Middlewares;
 
 use App\Core\Application;
 
 /**
  * GuestMiddleware
  * @author Raven Barrogo <barrogoraven@gmail.com>
- * @package App\Core\middlewares
+ * @package App\Core\Middlewares
  */
 class GuestMiddleware extends BaseMiddleware
 {

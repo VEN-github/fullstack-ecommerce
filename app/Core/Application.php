@@ -3,6 +3,8 @@
 namespace App\Core;
 
 use App\Models\Admin;
+use App\Core\Database\Database;
+use App\Core\Database\DbModel;
 
 /**
  * Application
@@ -18,10 +20,11 @@ class Application
     public Session $session;
     public Router $router;
     public Database $db;
-    public DbModel|Admin|null $admin;
-    public ?DbModel $user;
+    public AdminModel|null $admin;
+    public DbModel|null $user;
+    public View $view;
     public static Application $app;
-    public Controller $controller;
+    public Controller|null $controller;
 
     public function __construct($rootPath, array $config)
     {
@@ -32,6 +35,7 @@ class Application
         $this->response = new Response();
         $this->session = new Session();
         $this->router = new Router($this->request, $this->response);
+        $this->view = new View();
 
         $this->db = new Database($config['database']);
 
@@ -65,7 +69,7 @@ class Application
         $this->controller = $controller;
     }
 
-    public function login(DbModel $user, $access_type = 'user')
+    public function login(AdminModel $user, $access_type = 'user')
     {
         if ($access_type == 'admin') {
             $this->admin = $user;
