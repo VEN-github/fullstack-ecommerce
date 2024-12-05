@@ -25,11 +25,14 @@ class AuthController extends Controller
   public function register(Request $request, Response $response)
   {
     $user = new User();
+    $loginForm = new LoginForm();
 
     if ($request->isPost()) {
       $user->loadData($request->getBody());
 
       if ($user->validate() && $user->save()) {
+        $loginForm->loadData($request->getBody());
+        $loginForm->login('user');
         $response->redirect('/');
         return;
       }
