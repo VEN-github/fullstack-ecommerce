@@ -26,7 +26,12 @@ class View
 
   protected function layoutContent($params = [])
   {
-    $layout = Application::$app->controller->layout ?? 'main';
+    if (isset(Application::$app->controller)) {
+      $layout = Application::$app->controller->layout;
+    } else {
+      $layout = str_contains($_SERVER['REQUEST_URI'], 'admin') ? 'admin_auth' : 'main';
+    }
+
     foreach ($params as $key => $value) {
       $$key = $value;
     }
