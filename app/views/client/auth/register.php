@@ -16,23 +16,23 @@
       <!-- end of panels -->
       <!-- start of sign up form -->
       <div class="signup-form">
-        <form class="form-group">
+        <form action="/register" method="POST" class="form-group">
           <h2 class="title">Create Account</h2>
           <div class="input-field">
-            <input type="text" placeholder=" " class="input" />
-            <label class="form-label">First Name</label>
+            <input type="text" id="first-name" name="first_name" placeholder=" " class="input" />
+            <label for="first-name" class="form-label">First Name</label>
           </div>
           <div class="input-field">
-            <input type="text" placeholder=" " class="input" />
-            <label class="form-label">Last Name</label>
+            <input type="text" id="last-name" name="last_name" placeholder=" " class="input" />
+            <label for="last-name" class="form-label">Last Name</label>
           </div>
           <div class="input-field">
-            <input type="email" placeholder=" " class="input" />
-            <label class="form-label">Email Address</label>
+            <input type="email" id="email" name="email" placeholder=" " class="input" />
+            <label for="email" class="form-label">Email Address</label>
           </div>
           <div class="input-field">
-            <input type="password" class="input password" placeholder=" " />
-            <label class="form-label">Password</label>
+            <input type="password" id="password" name="password" class="input password" placeholder=" " />
+            <label for="password" class="form-label">Password</label>
             <button type="button" class="show-password login-eye-btn invisible">
               <span class="iconify show-pass" data-icon="ant-design:eye-invisible-outlined" data-inline="false" />
             </button>
@@ -41,8 +41,8 @@
             </button>
           </div>
           <div class="input-field">
-            <input type="password" class="input password" placeholder=" " />
-            <label class="form-label">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm_password" class="input password" placeholder=" " />
+            <label for="confirm-password" class="form-label">Confirm Password</label>
             <button type="button" class="show-password login-eye-btn invisible">
               <span class="iconify show-pass" data-icon="ant-design:eye-invisible-outlined" data-inline="false" />
             </button>

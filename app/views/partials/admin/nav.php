@@ -4,6 +4,7 @@ use App\Core\Application;
 
 $admin = Application::$app->admin;
 ?>
+
 <nav
   class="fixed left-0 right-0 top-0 z-50 border-b border-gray-200 bg-white px-4 py-2.5">
   <div class="flex flex-wrap items-center justify-between">

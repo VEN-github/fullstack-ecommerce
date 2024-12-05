@@ -3,15 +3,15 @@
     <div class="form-container">
       <!-- start of login form -->
       <div class="login-form">
-        <form class="form-group login-group">
+        <form action="/login" method="POST" class="form-group login-group">
           <h2 class="title">Login</h2>
           <div class="input-field">
-            <input type="email" class="input" placeholder=" " />
-            <label class="form-label">Email Address</label>
+            <input type="email" id="email" name="email" class="input" placeholder=" " />
+            <label for="email" class="form-label">Email Address</label>
           </div>
           <div class="input-field">
-            <input type="password" class="input password" placeholder=" " />
-            <label class="form-label">Password</label>
+            <input type="password" id="password" name="password" class="input password" placeholder=" " />
+            <label for="password" class="form-label">Password</label>
             <button type="button" class="show-password login-eye-btn invisible">
               <span class="iconify show-pass" data-icon="ant-design:eye-invisible-outlined" data-inline="false" />
             </button>

@@ -3,6 +3,12 @@
 namespace App\Controllers\Client;
 
 use App\Core\Controller;
+use App\Models\User;
+use App\Models\LoginForm;
+use App\Core\Middlewares\GuestMiddleware;
+use App\Core\Request;
+use App\Core\Response;
+use App\Core\Application;
 
 /**
  * AuthController
@@ -11,21 +17,54 @@ use App\Core\Controller;
  */
 class AuthController extends Controller
 {
-  public function register()
+  public function __construct()
   {
-    $params = [
-      'title' => 'Create Account'
-    ];
+    $this->registerMiddleware(new GuestMiddleware(['register', 'login']));
+  }
 
+  public function register(Request $request, Response $response)
+  {
+    $user = new User();
+
+    if ($request->isPost()) {
+      $user->loadData($request->getBody());
+
+      if ($user->validate() && $user->save()) {
+        $response->redirect('/');
+        return;
+      }
+    }
+
+    $params = [
+      'title' => 'Create Account',
+      'model' => $user
+    ];
     return $this->render('client/auth/register', $params);
   }
 
-  public function login()
+  public function login(Request $request, Response $response)
   {
-    $params = [
-      'title' => 'Login'
-    ];
+    $loginForm = new LoginForm();
 
+    if ($request->isPost()) {
+      $loginForm->loadData($request->getBody());
+
+      if ($loginForm->validate() && $loginForm->login('user')) {
+        $response->redirect('/');
+        return;
+      }
+    }
+
+    $params = [
+      'title' => 'Login',
+      'model' => $loginForm
+    ];
     return $this->render('client/auth/login', $params);
+  }
+
+  public function logout(Request $request, Response $response)
+  {
+    Application::$app->logout('user');
+    $response->redirect('/');
   }
 }
