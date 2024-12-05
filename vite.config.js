@@ -6,7 +6,7 @@ export default defineConfig({
   build: {
     manifest: true,
     rollupOptions: {
-      input: './src/main.ts'
+      input: ['./src/client.ts', './src/admin.ts']
     },
     modulePreload: {
       polyfill: false
@@ -20,6 +20,10 @@ export default defineConfig({
       targets: [
         {
           src: 'src/assets/images',
+          dest: 'assets'
+        },
+        {
+          src: 'src/assets/videos',
           dest: 'assets'
         }
       ]
