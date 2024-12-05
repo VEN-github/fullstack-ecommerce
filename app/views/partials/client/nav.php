@@ -3,17 +3,17 @@
 use App\Core\Application;
 ?>
 
-<header id="main-header" class="bg">
+<header id="main-header" class="<?= urlIs('/') ? '' : 'bg' ?>">
   <div class="container flex">
     <div class="logo">
       <a href="/"><img src="<?= asset('logo_white.png') ?>" alt="Logo" /></a>
     </div>
     <nav>
       <ul class="nav-links">
-        <li><a href="/" class="nav-link">Home</a></li>
-        <li><a href="#" class="nav-link">Shop</a></li>
-        <li><a href="/about" class="nav-link">About</a></li>
-        <li><a href="#" class="nav-link">Contact</a></li>
+        <li><a href="/" class="nav-link <?= urlIs('/') ? 'active' : '' ?> ">Home</a></li>
+        <li><a href="/shop" class="nav-link <?= urlIs('/shop') ? 'active' : '' ?> ">Shop</a></li>
+        <li><a href="/about" class="nav-link <?= urlIs('/about') ? 'active' : '' ?> ">About</a></li>
+        <li><a href="/contact" class="nav-link <?= urlIs('/contact') ? 'active' : '' ?> ">Contact</a></li>
         <?php if (Application::$app->isGuest()): ?>
           <li><a href="/login" class="login-nav btn outline-primary-btn">Login</a></li>
         <?php endif; ?>
