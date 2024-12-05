@@ -59,9 +59,9 @@
         line-height: clamp(2.5rem, 3vw, 3.375rem);
         letter-spacing: 0.095em;
 
-        & span:not(.highlight) {
-          display: block;
-        }
+        // & span:not(.highlight) {
+        //   display: block;
+        // }
 
         .highlight {
           color: colors.$secondary-color;

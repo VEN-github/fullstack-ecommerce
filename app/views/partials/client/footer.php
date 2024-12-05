@@ -1,15 +1,18 @@
 <footer id="main-footer">
   <div class="container footer-container">
     <div class="logo">
-      <a href="#"><img src="<?= asset('logo_white.png') ?>" alt="Logo" /></a>
-      <p class="copyright"><span>&copy;</span> 2024 INVI Clothing Co.</p>
+      <a href="/"><img src="<?= asset('logo_white.png') ?>" alt="Logo" /></a>
+      <p class="copyright">
+        <span>&copy;</span>
+        <span>2024 INVI Clothing Co.</span>
+      </p>
     </div>
     <div class="menu-links accordion-link">
       <h4>MENU<span class="plus-icon">+</span></h4>
       <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="#">Shop</a></li>
-        <li><a href="#">About</a></li>
+        <li><a href="/about">About</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
     </div>

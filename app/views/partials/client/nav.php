@@ -1,13 +1,13 @@
 <header id="main-header" class="bg">
   <div class="container flex">
     <div class="logo">
-      <a href="#"><img src="<?= asset('logo_white.png') ?>" alt="Logo" /></a>
+      <a href="/"><img src="<?= asset('logo_white.png') ?>" alt="Logo" /></a>
     </div>
     <nav>
       <ul class="nav-links">
-        <li><a href="#" class="nav-link">Home</a></li>
+        <li><a href="/" class="nav-link">Home</a></li>
         <li><a href="#" class="nav-link">Shop</a></li>
-        <li><a href="#" class="nav-link">About</a></li>
+        <li><a href="/about" class="nav-link">About</a></li>
         <li><a href="#" class="nav-link">Contact</a></li>
         <li><a href="#" class="login-nav btn outline-primary-btn">Login</a></li>
       </ul>
