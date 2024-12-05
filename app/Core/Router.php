@@ -65,7 +65,9 @@ class Router
 
         if ($callback === false) {
             $this->response->setStatusCode(404);
-            return Application::$app->view->renderView('errors/_404');
+            $view = str_contains($_SERVER['REQUEST_URI'], 'admin') ? 'errors/admin/_404' : 'errors/client/_404';
+
+            return Application::$app->view->renderView($view);
         }
         if (is_string($callback)) {
             return Application::$app->view->renderView($callback);

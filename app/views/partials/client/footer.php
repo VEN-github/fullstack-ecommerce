@@ -11,9 +11,9 @@
       <h4>MENU<span class="plus-icon">+</span></h4>
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="#">Shop</a></li>
+        <li><a href="/shop">Shop</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="/contact">Contact</a></li>
       </ul>
     </div>
     <div class="help-center accordion-link">
