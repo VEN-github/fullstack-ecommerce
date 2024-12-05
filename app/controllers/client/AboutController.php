@@ -7,12 +7,16 @@ use App\Core\Controller;
 /**
  * AboutController
  * @author Raven Barrogo <barrogoraven@gmail.com>
- * @package App\Controllers
+ * @package App\Controllers\Client
  */
 class AboutController extends Controller
 {
   public function index()
   {
-    return $this->render('client/about/index');
+    $params = [
+      'title' => 'About Us'
+    ];
+
+    return $this->render('client/about/index', $params);
   }
 }

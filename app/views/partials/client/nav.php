@@ -9,7 +9,7 @@
         <li><a href="#" class="nav-link">Shop</a></li>
         <li><a href="/about" class="nav-link">About</a></li>
         <li><a href="#" class="nav-link">Contact</a></li>
-        <li><a href="#" class="login-nav btn outline-primary-btn">Login</a></li>
+        <li><a href="/login" class="login-nav btn outline-primary-btn">Login</a></li>
       </ul>
     </nav>
     <div class="side-menu">
@@ -83,7 +83,7 @@
           </ul>
         </div> -->
       </div>
-      <a href="#" class="btn outline-primary-btn login-btn">Login</a>
+      <a href="/login" class="btn outline-primary-btn login-btn">Login</a>
       <div class="burger-btn">
         <div class="line1"></div>
         <div class="line2"></div>

@@ -8,7 +8,7 @@ use App\Core\Middlewares\AuthMiddleware;
 /**
  * DashboardController
  * @author Raven Barrogo <barrogoraven@gmail.com>
- * @package App\Controllers
+ * @package App\Controllers\Admin
  */
 class DashboardController extends Controller
 {

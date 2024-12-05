@@ -7,7 +7,7 @@ use App\Core\Controller;
 /**
  * HomeController
  * @author Raven Barrogo <barrogoraven@gmail.com>
- * @package App\Controllers
+ * @package App\Controllers\Client
  */
 class HomeController extends Controller
 {

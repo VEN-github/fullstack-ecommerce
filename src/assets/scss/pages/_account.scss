@@ -164,9 +164,9 @@
   justify-self: flex-start;
 }
 
-.signup {
-  margin-top: -1em;
-}
+// .signup {
+//   margin-top: -1em;
+// }
 
 .panel {
   @include flex.flex(center, center, column);
