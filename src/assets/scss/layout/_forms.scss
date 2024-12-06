@@ -51,7 +51,7 @@
   &:focus:not(.disabled) {
     border-color: colors.$secondary-color;
   }
-  &:invalid {
+  &.invalid {
     border-color: colors.$validation-color;
   }
 }
