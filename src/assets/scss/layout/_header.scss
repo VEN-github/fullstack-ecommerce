@@ -30,9 +30,9 @@
       object-fit: cover;
       transition: transform 300ms ease-out;
 
-      &:hover {
-        transform: rotate(-5deg);
-      }
+      // &:hover {
+      //   transform: rotate(-5deg);
+      // }
     }
   }
 
