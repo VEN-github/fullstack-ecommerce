@@ -46,6 +46,7 @@ abstract class DbModel extends Model
     {
         $tableName = $this->tableName();
         $attributes = $this->attributes();
+        $attributes[] = 'updated_at';
 
         $params = array_map(fn($attr) => "$attr = :$attr", $attributes);
 
@@ -63,6 +64,26 @@ abstract class DbModel extends Model
         }
 
         $statement->bindValue(':' . $this->primaryKey(), $this->{$this->primaryKey()});
+        $statement->bindValue(':updated_at', date('Y-m-d H:i:s'));
+
+        $statement->execute();
+
+        return true;
+    }
+
+    public function delete()
+    {
+        $tableName = $this->tableName();
+
+        $statement = self::prepare(
+            "UPDATE $tableName SET deleted_at = :deleted_at WHERE " .
+                $this->primaryKey() .
+                ' = :' .
+                $this->primaryKey()
+        );
+
+        $statement->bindValue(':' . $this->primaryKey(), $this->{$this->primaryKey()});
+        $statement->bindValue(':deleted_at', date('Y-m-d H:i:s'));
 
         $statement->execute();
 

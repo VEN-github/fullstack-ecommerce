@@ -16,4 +16,5 @@ $app->router->group('admin', function () use ($app) {
     $app->router->post('/supplier/create', [SupplierController::class, 'create']);
     $app->router->get('/supplier/{id:\d+}/edit', [SupplierController::class, 'edit']);
     $app->router->post('/supplier/{id:\d+}/edit', [SupplierController::class, 'edit']);
+    $app->router->get('/supplier/{id:\d+}/delete', [SupplierController::class, 'delete']);
 });

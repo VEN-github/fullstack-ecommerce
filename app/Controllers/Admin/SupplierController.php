@@ -77,4 +77,14 @@ class SupplierController extends Controller
 
         return $this->render('admin/supplier/edit', $params);
     }
+
+    public function delete(Request $request, Response $response)
+    {
+        $supplier = new Supplier();
+
+        $supplier->find($request->getRouteParam('id'));
+        $supplier->delete();
+
+        $response->redirect('/admin/suppliers');
+    }
 }

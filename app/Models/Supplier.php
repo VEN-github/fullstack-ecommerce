@@ -17,6 +17,8 @@ class Supplier extends DbModel
     public string $address = '';
     public string $phone = '';
     public string $created_at = '';
+    public string|null $updated_at = null;
+    public string|null $deleted_at = null;
 
     public function tableName(): string
     {
@@ -71,7 +73,9 @@ class Supplier extends DbModel
     {
         $tableName = $this->tableName();
 
-        $statement = self::prepare("SELECT * FROM $tableName ORDER BY created_at DESC");
+        $statement = self::prepare(
+            "SELECT * FROM $tableName WHERE deleted_at IS NULL ORDER BY created_at DESC"
+        );
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
