@@ -62,10 +62,11 @@ class Router
         $path = $this->request->getPath();
         $method = $this->request->method();
         $callback = isset($this->routes[$method][$path]) ? $this->routes[$method][$path] : false;
+        $isAdmin = str_contains($path, 'admin');
 
         if ($callback === false) {
             $this->response->setStatusCode(404);
-            $view = str_contains($_SERVER['REQUEST_URI'], 'admin') ? 'errors/admin/_404' : 'errors/client/_404';
+            $view = $isAdmin ? 'errors/admin/_404' : 'errors/client/_404';
 
             return Application::$app->view->renderView($view);
         }

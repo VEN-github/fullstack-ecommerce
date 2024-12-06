@@ -20,13 +20,15 @@ class GuestMiddleware extends BaseMiddleware
 
   public function execute()
   {
-    if (Application::$app->admin) {
+    $isAdmin = str_contains(Application::$app->request->getPath(), 'admin');
+
+    if (Application::$app->admin && $isAdmin) {
       if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
         Application::$app->response->redirect('/admin');
       }
     }
 
-    if (Application::$app->user) {
+    if (Application::$app->user && !$isAdmin) {
       if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
         Application::$app->response->redirect('/');
       }
