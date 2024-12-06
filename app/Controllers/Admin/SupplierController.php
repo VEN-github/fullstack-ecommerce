@@ -53,4 +53,28 @@ class SupplierController extends Controller
 
         return $this->render('admin/supplier/create', $params);
     }
+
+    public function edit(Request $request, Response $response)
+    {
+        $supplier = new Supplier();
+
+        $supplier->find($request->getRouteParam('id'));
+
+        if ($request->isPost()) {
+            $supplier->loadData($request->getBody());
+            $supplier->id = $request->getRouteParam('id');
+
+            if ($supplier->validate() && $supplier->update()) {
+                $response->redirect('/admin/suppliers');
+                return;
+            }
+        }
+
+        $params = [
+            'title' => 'Edit Supplier',
+            'model' => $supplier,
+        ];
+
+        return $this->render('admin/supplier/edit', $params);
+    }
 }

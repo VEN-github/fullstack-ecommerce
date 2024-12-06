@@ -97,10 +97,22 @@ abstract class Model
                     $className = $rule['class'];
                     $uniqueAttr = $rule['attribute'] ?? $attribute;
                     $tableName = $className::tableName();
+                    $except = $rule['except'] ?? null;
 
                     $db = Application::$app->db;
-                    $statement = $db->prepare("SELECT * FROM $tableName WHERE $uniqueAttr = :attr");
+                    $query = "SELECT * FROM $tableName WHERE $uniqueAttr = :attr";
+
+                    if ($except) {
+                        $query .= ' AND id != :id';
+                    }
+
+                    $statement = $db->prepare($query);
                     $statement->bindValue(':attr', $value);
+
+                    if ($except) {
+                        $statement->bindValue(':id', $except);
+                    }
+
                     $statement->execute();
                     $record = $statement->fetchObject();
 

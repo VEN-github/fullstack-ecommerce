@@ -26,7 +26,7 @@
               <th scope="row" class="whitespace-nowrap"><?= $supplier->phone ?></th>
               <th scope="row" class="whitespace-nowrap"><?= $supplier->address ?></th>
               <td scope="row" class="flex gap-4 items-center">
-                <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
+                <a href="/admin/supplier/<?= $supplier->id ?>/edit" class="font-medium text-blue-600 hover:underline">Edit</a>
                 <a href="#" class="font-medium text-red-600 hover:underline">Delete</a>
               </td>
             </tr>

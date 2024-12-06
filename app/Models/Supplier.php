@@ -40,7 +40,7 @@ class Supplier extends DbModel
             'email' => [
                 self::RULE_REQUIRED,
                 self::RULE_EMAIL,
-                [self::RULE_UNIQUE, 'class' => self::class],
+                [self::RULE_UNIQUE, 'class' => self::class, 'except' => $this->id],
             ],
             'address' => [self::RULE_REQUIRED],
             'phone' => [self::RULE_REQUIRED],
@@ -75,5 +75,18 @@ class Supplier extends DbModel
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
+    }
+
+    public function find($id)
+    {
+        $supplier = static::findOne(['id' => $id]);
+
+        if (!$supplier) {
+            throw new \Exception('Supplier not found');
+        }
+
+        $this->loadData($supplier);
+
+        return $this;
     }
 }
