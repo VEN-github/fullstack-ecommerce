@@ -5,6 +5,8 @@ namespace App\Controllers\Admin;
 use App\Core\Controller;
 use App\Core\Middlewares\AuthMiddleware;
 use App\Models\Supplier;
+use App\Core\Request;
+use App\Core\Response;
 
 /**
  * SupplierController
@@ -13,21 +15,42 @@ use App\Models\Supplier;
  */
 class SupplierController extends Controller
 {
-  public function __construct()
-  {
-    $this->registerMiddleware(new AuthMiddleware(['index']));
-  }
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware(['index']));
+        $this->setLayout('admin');
+    }
 
-  public function index()
-  {
-    $suppliers = (new Supplier())->get();
+    public function index()
+    {
+        $suppliers = (new Supplier())->get();
 
-    $params = [
-      'title' => 'Suppliers',
-      'suppliers' => $suppliers
-    ];
-    $this->setLayout('admin');
+        $params = [
+            'title' => 'Suppliers',
+            'suppliers' => $suppliers,
+        ];
 
-    return $this->render('admin/supplier/index', $params);
-  }
+        return $this->render('admin/supplier/index', $params);
+    }
+
+    public function create(Request $request, Response $response)
+    {
+        $supplier = new Supplier();
+
+        if ($request->isPost()) {
+            $supplier->loadData($request->getBody());
+
+            if ($supplier->validate() && $supplier->save()) {
+                $response->redirect('/admin/suppliers');
+                return;
+            }
+        }
+
+        $params = [
+            'title' => 'Add New Supplier',
+            'model' => $supplier,
+        ];
+
+        return $this->render('admin/supplier/create', $params);
+    }
 }

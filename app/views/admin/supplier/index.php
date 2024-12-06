@@ -1,12 +1,12 @@
 <section class="px-4 py-2">
   <div class="flex items-center justify-between flex-wrap gap-2 mb-4">
     <h1 class="text-2xl text-gray-900 font-semibold">Suppliers</h1>
-    <button type="button" class="btn btn-primary inline-flex items-center gap-2">
+    <a href="/admin/supplier/create" class="btn btn-primary inline-flex items-center gap-2">
       <span class="icon-[mdi--file-plus]" style="width: 24px; height: 24px;"></span>
       <span>Add New</span>
-    </button>
+    </a>
   </div>
-  <div class="bg-white relative p-5 shadow-md sm:rounded-lg overflow-hidden">
+  <div class="bg-white relative p-5 shadow-md rounded-lg overflow-hidden">
     <div class="relative overflow-x-auto">
       <table class="datatable">
         <thead>
@@ -19,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php foreach ($suppliers as $supplier) : ?>
+          <?php foreach ($suppliers as $supplier): ?>
             <tr class="odd:bg-white even:bg-gray-100 border-b">
               <th scope="row" class="whitespace-nowrap"><?= $supplier->name ?></th>
               <th scope="row" class="whitespace-nowrap"><?= $supplier->email ?></th>
