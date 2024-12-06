@@ -4,7 +4,7 @@ import { addDynamicIconSelectors } from '@iconify/tailwind'
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./app/**/*.php', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./app/**/*.php', './src/**/*.{js,ts,jsx,tsx}', './node_modules/flowbite/**/*.js'],
   theme: {
     fontFamily: {
       sans: ['Montserrat', 'sans-serif']
@@ -17,5 +17,5 @@ export default {
       }
     }
   },
-  plugins: [flowbitePlugin, addDynamicIconSelectors()]
+  plugins: [flowbitePlugin({ datatables: true }), addDynamicIconSelectors()]
 } satisfies Config
