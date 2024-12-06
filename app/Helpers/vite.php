@@ -66,18 +66,18 @@ function getProdStyles(array $files)
   return empty($files) ? '' : implode("\n", array_map(fn($files) => "<link rel=\"stylesheet\" href=\"/../dist/{$files}\">", $files)) . "\n";
 }
 
-function asset(string $entry)
+function asset(string $entry, string $type = "images")
 {
   // If in development mode, return the dev server script tags
   if (isDev()) {
-    return getDevAssets($entry);
+    return getDevAssets($entry, $type);
   }
 
-  return '/assets/images/' . $entry;
+  return "/assets/$type/$entry";
 }
 
-function getDevAssets(string $entry)
+function getDevAssets(string $entry, string $type = "images")
 {
   $dev_server = getDevServer();
-  return $dev_server . "/src/assets/images/$entry";
+  return $dev_server . "/src/assets/$type/$entry";
 }

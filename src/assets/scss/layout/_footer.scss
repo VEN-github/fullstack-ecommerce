@@ -1,0 +1,160 @@
+@use '../abstracts/colors';
+@use '../abstracts/fonts';
+@use './flex';
+@use './forms';
+@use '../components/media';
+@use 'sass:map';
+
+#main-footer {
+  width: 100%;
+  padding: 4em 0;
+  background: colors.$primary-color;
+
+  .footer-container {
+    @include flex.flex(space-around, stretch, row);
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    align-self: center;
+    & img {
+      width: 180px;
+      object-fit: cover;
+    }
+    .copyright {
+      font-size: 1rem;
+      font-weight: map.get(fonts.$font-weight, regular);
+      color: colors.$text-color;
+    }
+  }
+
+  .menu-links {
+    & h4 {
+      @include flex.flex(space-between, center, row);
+      margin-bottom: 0.5em;
+      font-size: 1.125rem;
+      font-weight: map.get(fonts.$font-weight, semi-bold);
+      color: colors.$secondary-color;
+
+      .plus-icon {
+        display: none;
+        font-size: 1.5rem;
+        transition: transform 0.5s ease;
+      }
+    }
+    & ul {
+      list-style: none;
+    }
+
+    & a {
+      font-size: 1.125rem;
+      font-weight: map.get(fonts.$font-weight, regular);
+      color: colors.$text-color;
+      text-decoration: none;
+      transition: color 0.5s ease;
+      &:hover {
+        color: colors.$accent-color;
+      }
+    }
+  }
+  .help-center {
+    @extend .menu-links;
+  }
+  .social-icon {
+    & h4 {
+      margin-bottom: 0.5em;
+      font-size: 1.125rem;
+      font-weight: map.get(fonts.$font-weight, semi-bold);
+      color: colors.$secondary-color;
+    }
+    .fb {
+      width: 34px;
+      height: 34px;
+      margin: 0 0.8em 1em 0;
+      color: colors.$text-color;
+      transition: color 0.5s ease;
+      &:hover {
+        color: colors.$accent-color;
+      }
+    }
+    .ig {
+      width: 34px;
+      height: 34px;
+      margin-bottom: 1em;
+      color: colors.$text-color;
+      transition: color 0.5s ease;
+      &:hover {
+        color: colors.$accent-color;
+      }
+    }
+  }
+  .newsletter {
+    & h4 {
+      font-size: 1.125rem;
+      font-weight: map.get(fonts.$font-weight, semi-bold);
+      margin-bottom: 0.5em;
+      color: colors.$secondary-color;
+    }
+    .subscribe-input {
+      position: relative;
+    }
+    .send-btn {
+      width: 26px;
+      height: 26px;
+      color: colors.$text-color;
+    }
+  }
+
+  @include media.landscapeTablet {
+    .menu-links {
+      margin-bottom: 1em;
+    }
+  }
+  @include media.bigMobile {
+    .footer-container {
+      flex-direction: column;
+
+      .logo {
+        margin-bottom: 1em;
+      }
+      .menu-links {
+        cursor: pointer;
+        h4 .plus-icon {
+          display: flex;
+        }
+
+        ul {
+          overflow: hidden;
+          max-height: 0;
+          transition: max-height 1s ease;
+
+          & li:not(:last-child) {
+            margin-bottom: 0.8em;
+          }
+        }
+
+        &.active ul {
+          max-height: 300px;
+          animation: fade 1.5s ease-in-out;
+        }
+        &.active h4 .plus-icon {
+          transform: rotate(45deg);
+        }
+      }
+
+      .input-for-footer {
+        width: 100%;
+      }
+    }
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

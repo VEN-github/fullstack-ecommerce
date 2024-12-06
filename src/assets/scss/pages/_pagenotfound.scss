@@ -1,0 +1,36 @@
+@use '../abstracts/colors';
+@use '../abstracts/fonts';
+@use '../layout/flex';
+@use 'sass:map';
+
+#page-not-found {
+  padding: 8em 0 3em 0;
+
+  .wrapper {
+    @include flex.flex(center, center, column);
+    margin-bottom: 1em;
+    & img {
+      width: 700px;
+      max-width: 100%;
+      margin-bottom: 1em;
+      object-fit: cover;
+    }
+    & h4 {
+      font-size: clamp(1.25rem, 5vw, 2.5rem);
+      font-weight: map.get(fonts.$font-weight, semi-bold);
+      color: colors.$primary-color;
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+    & p {
+      margin-bottom: 2em;
+      font-size: clamp(0.875rem, 3vw, 1.125rem);
+      font-weight: map.get(fonts.$font-weight, regular);
+      color: colors.$primary-color;
+      text-align: center;
+    }
+    .back-btn {
+      box-shadow: none;
+    }
+  }
+}

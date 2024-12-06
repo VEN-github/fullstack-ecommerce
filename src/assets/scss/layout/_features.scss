@@ -1,0 +1,107 @@
+@use '../abstracts/colors';
+@use '../abstracts/fonts';
+@use './flex';
+@use '../components/buttons';
+@use 'sass:map';
+
+.features {
+  @include flex.flex(flex-start, center, column);
+  padding: 2em 0;
+  & h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: map.get(fonts.$font-weight, semi-bold);
+    color: colors.$primary-color;
+    letter-spacing: 0.1em;
+    text-align: center;
+  }
+
+  .no-data {
+    margin: 0 1em;
+    & img {
+      width: 300px;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1em;
+      object-fit: cover;
+    }
+
+    & p {
+      font-size: clamp(0.875rem, 5vw, 1.5rem);
+      font-weight: map.get(fonts.$font-weight, medium);
+      color: colors.$primary-color;
+      text-align: center;
+    }
+  }
+
+  .carousel-container {
+    position: relative;
+    display: flex;
+    margin: 4em 0;
+    .carousel-box {
+      @include flex.flex(flex-start, center, column);
+      margin: 0 2em;
+      user-select: none;
+      transition: all 0.25s ease;
+
+      .product-label {
+        align-self: start;
+        display: inline-block;
+        padding: 0.1em 0.5em;
+        background: colors.$sale-color;
+        color: colors.$text-color;
+        border-radius: 5px;
+        text-transform: uppercase;
+      }
+
+      & img {
+        width: 300px;
+        object-fit: cover;
+        margin-bottom: 0.5em;
+      }
+
+      .details {
+        @include flex.flex(center, center, column);
+        & a {
+          font-size: 1.25rem;
+          font-weight: map.get(fonts.$font-weight, semi-bold);
+          color: colors.$primary-color;
+          text-decoration: none;
+          transition: color 0.5s ease;
+
+          &:hover {
+            color: colors.$accent-color;
+          }
+        }
+        & .color {
+          font-size: 1.125rem;
+          font-weight: map.get(fonts.$font-weight, regular);
+          color: colors.$primary-color;
+        }
+        .price-container {
+          @include flex.flex(center, center, row);
+          .price {
+            @include flex.flex(flex-start, center, row);
+            font-size: 1.125rem;
+            font-weight: map.get(fonts.$font-weight, medium);
+            color: colors.$primary-color;
+            .peso-sign {
+              text-decoration: line-through;
+              margin-top: -0.1rem;
+              margin-right: 0.2em;
+              color: colors.$primary-color;
+            }
+          }
+          .sales-amount {
+            margin-left: 0.5em;
+            color: colors.$light-color;
+            text-decoration: line-through;
+          }
+        }
+      }
+    }
+  }
+
+  .cta {
+    margin-bottom: 1.5em;
+  }
+}

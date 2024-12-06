@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Core\Application;
 use App\Core\Model;
 use App\Models\Admin;
+use App\Models\User;
 
 /**
  * LoginForm
@@ -32,20 +33,21 @@ class LoginForm extends Model
     ];
   }
 
-  public function login()
+  public function login($access_type = 'admin')
   {
-    $admin = (new Admin())->findOne(['email' => $this->email]);
+    $userClass = $access_type == 'user' ? new User() : new Admin();
+    $user = $userClass->findOne(['email' => $this->email]);
 
-    if (!$admin) {
-      $this->addError('email', 'Admin does not exist with this email address.');
+    if (!$user) {
+      $this->addError('email',  ucfirst($access_type) . ' does not exist with this email address.');
       return false;
     }
 
-    if (!password_verify($this->password, $admin->password)) {
+    if (!password_verify($this->password, $user->password)) {
       $this->addError('password', 'Password is incorrect.');
       return false;
     }
 
-    return Application::$app->login($admin, 'admin');
+    return Application::$app->login($user, $access_type);
   }
 }

@@ -66,7 +66,7 @@ abstract class Model
           $this->addErrorForRule($attribute, $ruleName, ['max' => $rule['max'], 'field' => $this->getLabel($attribute)]);
         }
 
-        if ($ruleName === self::RULE_MATCH && $value !== $rule['match']) {
+        if ($ruleName === self::RULE_MATCH && $value !== $this->{$rule['match']}) {
           $this->addErrorForRule($attribute, $ruleName, ['match' => $this->getLabel($rule['match']), 'field' => $this->getLabel($attribute)]);
         }
 

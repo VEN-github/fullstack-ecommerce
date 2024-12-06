@@ -3,8 +3,8 @@
 namespace App\Core;
 
 use App\Models\Admin;
+use App\Models\User;
 use App\Core\Database\Database;
-use App\Core\Database\DbModel;
 
 /**
  * Application
@@ -15,13 +15,14 @@ class Application
 {
     public static string $ROOT_DIR;
     public string|Admin $adminClass;
+    public string|User $userClass;
     public Request $request;
     public Response $response;
     public Session $session;
     public Router $router;
     public Database $db;
     public AdminModel|null $admin;
-    public DbModel|null $user;
+    public UserModel|null $user;
     public View $view;
     public static Application $app;
     public Controller|null $controller;
@@ -29,6 +30,7 @@ class Application
     public function __construct($rootPath, array $config)
     {
         $this->adminClass = new $config['adminClass'];
+        $this->userClass = new $config['userClass'];
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();
@@ -40,6 +42,7 @@ class Application
         $this->db = new Database($config['database']);
 
         $this->initAdminSession();
+        $this->initUserSession();
     }
 
     private function initAdminSession()
@@ -51,6 +54,18 @@ class Application
             $this->admin = $this->adminClass->findOne([$adminPrimarykey => $adminValue]);
         } else {
             $this->admin = null;
+        }
+    }
+
+    private function initUserSession()
+    {
+        $userValue = $this->session->get('user');
+
+        if ($userValue) {
+            $userPrimarykey = $this->userClass->primaryKey();
+            $this->user = $this->userClass->findOne([$userPrimarykey => $userValue]);
+        } else {
+            $this->user = null;
         }
     }
 
@@ -69,7 +84,7 @@ class Application
         $this->controller = $controller;
     }
 
-    public function login(AdminModel $user, $access_type = 'user')
+    public function login(AdminModel|UserModel $user, $access_type = 'admin')
     {
         if ($access_type == 'admin') {
             $this->admin = $user;
@@ -85,7 +100,7 @@ class Application
         return true;
     }
 
-    public function logout($access_type = 'user')
+    public function logout($access_type = 'admin')
     {
         if ($access_type == 'admin') {
             $this->admin = null;
