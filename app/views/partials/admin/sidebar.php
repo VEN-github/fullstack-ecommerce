@@ -6,10 +6,18 @@
     <ul class="space-y-2">
       <li>
         <a
-          href="#"
-          class="group flex items-center rounded-lg p-2 text-base font-medium text-gray-900 hover:bg-gray-100">
+          href="/admin"
+          class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs('/admin') ? 'bg-gray-100' : 'group hover:bg-gray-100' ?>">
           <span class="icon-[material-symbols--dashboard] h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900"></span>
           <span class="ml-3">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="/admin/suppliers"
+          class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs('/admin/suppliers') ? 'bg-gray-100' : 'group hover:bg-gray-100' ?>">
+          <span class="icon-[mdi--truck] h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900"></span>
+          <span class="ml-3">Suppliers</span>
         </a>
       </li>
       <li>
