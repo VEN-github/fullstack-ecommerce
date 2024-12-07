@@ -54,10 +54,16 @@ composer install
 npm install
 ```
 
-### Migrate `app/migrations` files
+### Migrate files
 
 ```bash
 php app/migrate.php
+```
+
+### Seed files
+
+```bash
+php app/seed.php
 ```
 
 ### Start the server
