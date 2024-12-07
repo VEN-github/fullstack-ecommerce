@@ -1,8 +1,8 @@
 <?php
 
 return [
-  'up' => function ($pdo) {
-    $sql = "CREATE TABLE IF NOT EXISTS admin (
+    'up' => function ($pdo) {
+        $sql = "CREATE TABLE IF NOT EXISTS admin (
       id INT AUTO_INCREMENT PRIMARY KEY,
       first_name VARCHAR(255) NOT NULL,
       last_name VARCHAR(255) NOT NULL,
@@ -11,9 +11,9 @@ return [
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ) ENGINE=INNODB;";
 
-    $pdo->exec($sql);
-  },
-  'down' => function ($pdo) {
-    $pdo->exec('DROP TABLE IF EXISTS admin;');
-  }
+        $pdo->exec($sql);
+    },
+    'down' => function ($pdo) {
+        $pdo->exec('DROP TABLE IF EXISTS admin;');
+    },
 ];
