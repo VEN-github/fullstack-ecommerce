@@ -16,45 +16,45 @@ use App\Core\Response;
  */
 class RawMaterialController extends Controller
 {
-  public function __construct()
-  {
-    $this->registerMiddleware(new AuthMiddleware(['index']));
-    $this->setLayout('admin');
-  }
-
-  public function index()
-  {
-    $raw_materials = (new RawMaterial())->get();
-
-    $params = [
-      'title' => 'Raw Materials',
-      'raw_materials' => $raw_materials
-    ];
-
-    return $this->render('admin/raw_materials/index', $params);
-  }
-
-  public function create(Request $request, Response $response)
-  {
-    $raw_material = new RawMaterial();
-
-    if ($request->isPost()) {
-      $raw_material->loadData($request->getBody());
-
-      if ($raw_material->validate() && $raw_material->save()) {
-        $response->redirect('/admin/raw-materials');
-        return;
-      }
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware(['index', 'create']));
+        $this->setLayout('admin');
     }
 
-    $suppliers = (new Supplier())->get();
+    public function index()
+    {
+        $raw_materials = (new RawMaterial())->get();
 
-    $params = [
-      'title' => 'Add New Raw Material',
-      'model' => $raw_material,
-      'suppliers' => $suppliers
-    ];
+        $params = [
+            'title' => 'Raw Materials',
+            'raw_materials' => $raw_materials,
+        ];
 
-    return $this->render('admin/raw_materials/create', $params);
-  }
+        return $this->render('admin/raw_materials/index', $params);
+    }
+
+    public function create(Request $request, Response $response)
+    {
+        $raw_material = new RawMaterial();
+
+        if ($request->isPost()) {
+            $raw_material->loadData($request->getBody());
+
+            if ($raw_material->validate() && $raw_material->save()) {
+                $response->redirect('/admin/raw-materials');
+                return;
+            }
+        }
+
+        $suppliers = (new Supplier())->get();
+
+        $params = [
+            'title' => 'Add New Raw Material',
+            'model' => $raw_material,
+            'suppliers' => $suppliers,
+        ];
+
+        return $this->render('admin/raw_materials/create', $params);
+    }
 }

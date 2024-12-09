@@ -17,7 +17,7 @@ class SupplierController extends Controller
 {
     public function __construct()
     {
-        $this->registerMiddleware(new AuthMiddleware(['index']));
+        $this->registerMiddleware(new AuthMiddleware(['index', 'create', 'edit', 'delete']));
         $this->setLayout('admin');
     }
 
