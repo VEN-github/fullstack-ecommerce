@@ -72,12 +72,8 @@ class RawMaterial extends DbModel
   public function get()
   {
     $tableName = $this->tableName();
+    $sql = "SELECT raw_materials.*, suppliers.name as supplier FROM $tableName LEFT JOIN suppliers ON raw_materials.supplier_id = suppliers.id ORDER BY raw_materials.created_at DESC";
 
-    $statement = self::prepare(
-      "SELECT raw_materials.*, suppliers.name as supplier FROM $tableName LEFT JOIN suppliers ON raw_materials.supplier_id = suppliers.id ORDER BY raw_materials.created_at DESC"
-    );
-    $statement->execute();
-
-    return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
+    return static::findAll($sql);
   }
 }

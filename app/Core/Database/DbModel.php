@@ -90,6 +90,14 @@ abstract class DbModel extends Model
         return true;
     }
 
+    public function findAll(string $sql)
+    {
+        $statement = self::prepare($sql);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
+    }
+
     public function findOne($where)
     {
         $tableName = static::tableName();

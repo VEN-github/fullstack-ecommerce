@@ -72,13 +72,9 @@ class Supplier extends DbModel
     public function get()
     {
         $tableName = $this->tableName();
+        $sql = "SELECT * FROM $tableName WHERE deleted_at IS NULL ORDER BY created_at DESC";
 
-        $statement = self::prepare(
-            "SELECT * FROM $tableName WHERE deleted_at IS NULL ORDER BY created_at DESC"
-        );
-        $statement->execute();
-
-        return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
+        return static::findAll($sql);
     }
 
     public function find($id)
