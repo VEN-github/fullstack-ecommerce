@@ -14,6 +14,14 @@
       </li>
       <li>
         <a
+          href="/admin/raw-materials"
+          class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs('/admin/raw-materials') ? 'bg-gray-100' : 'group hover:bg-gray-100' ?>">
+          <span class="icon-[solar--box-bold] h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900"></span>
+          <span class="ml-3">Raw Materials</span>
+        </a>
+      </li>
+      <li>
+        <a
           href="/admin/suppliers"
           class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs('/admin/suppliers') ? 'bg-gray-100' : 'group hover:bg-gray-100' ?>">
           <span class="icon-[mdi--truck] h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900"></span>

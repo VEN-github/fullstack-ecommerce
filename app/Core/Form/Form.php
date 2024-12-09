@@ -36,4 +36,9 @@ class Form
   {
     return new TextareaField($model, $attribute);
   }
+
+  public function number(Model $model, $attribute)
+  {
+    return new NumberField($model, $attribute);
+  }
 }

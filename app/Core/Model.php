@@ -49,6 +49,26 @@ abstract class Model
         return $this->placeholders()[$attribute] ?? '';
     }
 
+    public function steps(): array
+    {
+        return [];
+    }
+
+    public function getStep(string $attribute): string
+    {
+        return $this->steps()[$attribute] ?? 'any';
+    }
+
+    public function min(): array
+    {
+        return [];
+    }
+
+    public function getMin(string $attribute): string
+    {
+        return $this->min()[$attribute] ?? '';
+    }
+
     public function validate()
     {
         foreach ($this->rules() as $attribute => $rules) {
