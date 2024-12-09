@@ -12,7 +12,7 @@ use App\Core\Form\Form; ?>
     </div>
     <div class="mb-4">
       <?= $form->label($model, 'supplier_id') ?>
-      <?= $form->field($model, 'supplier_id') ?>
+      <?= $form->select($model, 'supplier_id', $suppliers) ?>
     </div>
     <div class="mb-4">
       <?= $form->label($model, 'unit_price') ?>

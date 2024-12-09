@@ -21,16 +21,16 @@ class Application
     public Session $session;
     public Router $router;
     public Database $db;
-    public AdminModel|null $admin;
-    public UserModel|null $user;
+    public ?AdminModel $admin;
+    public ?UserModel $user;
     public View $view;
     public static Application $app;
-    public Controller|null $controller;
+    public ?Controller $controller;
 
     public function __construct($rootPath, array $config)
     {
-        $this->adminClass = new $config['adminClass'];
-        $this->userClass = new $config['userClass'];
+        $this->adminClass = new ($config['adminClass'])();
+        $this->userClass = new ($config['userClass'])();
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();

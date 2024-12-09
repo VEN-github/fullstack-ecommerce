@@ -17,8 +17,8 @@ class Supplier extends DbModel
     public string $address = '';
     public string $phone = '';
     public string $created_at = '';
-    public string|null $updated_at = null;
-    public string|null $deleted_at = null;
+    public ?string $updated_at = null;
+    public ?string $deleted_at = null;
 
     public function tableName(): string
     {
