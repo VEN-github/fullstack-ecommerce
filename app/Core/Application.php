@@ -71,7 +71,21 @@ class Application
 
     public function run()
     {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch (\Exception $e) {
+            $isAdmin = str_contains($this->request->getPath(), 'admin');
+
+            if (isset($this->controller)) {
+                $layout = $isAdmin ? 'admin_auth' : 'main';
+                $this->controller->setLayout($layout);
+            }
+
+            $view = $isAdmin ? 'errors/admin/_error' : 'errors/client/_404';
+            echo $this->view->renderView($view, [
+                'exception' => $e,
+            ]);
+        }
     }
 
     public function getController()

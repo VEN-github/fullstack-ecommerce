@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Core\Exception\NotFoundException;
+
 /**
  * Router
  * @author Raven Barrogo <barrogoraven@gmail.com>
@@ -62,7 +64,7 @@ class Router
         return $this->route_map[$method] ?? [];
     }
 
-    public function getCallback()
+    public function getCallback(): mixed
     {
         $method = $this->request->method();
         $url = $this->request->getPath();
@@ -119,19 +121,13 @@ class Router
     {
         $path = $this->request->getPath();
         $method = $this->request->method();
-        $callback = isset($this->route_map[$method][$path])
-            ? $this->route_map[$method][$path]
-            : false;
-        $isAdmin = str_contains($path, 'admin');
+        $callback = isset($this->route_map[$method][$path]) ? $this->route_map[$method][$path] : false;
 
         if (!$callback) {
             $callback = $this->getCallback();
 
             if ($callback === false) {
-                $this->response->setStatusCode(404);
-                $view = $isAdmin ? 'errors/admin/_404' : 'errors/client/_404';
-
-                return Application::$app->view->renderView($view);
+                throw new NotFoundException();
             }
         }
         if (is_string($callback)) {
