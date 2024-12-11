@@ -33,10 +33,10 @@ abstract class DbModel extends Model
         return $this;
     }
 
-    public function get(): array
+    public function get($query = null): array
     {
         $tableName = $this->tableName();
-        $sql = "SELECT * FROM $tableName";
+        $sql = $query ?? "SELECT * FROM $tableName";
         $params = [];
 
         if (!empty($this->conditions)) {

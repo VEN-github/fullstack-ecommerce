@@ -57,6 +57,7 @@ class RawMaterial extends DbModel
     public function placeholders(): array
     {
         return [
+            'name' => 'Enter material name',
             'supplier_id' => 'Select Supplier',
         ];
     }
@@ -76,11 +77,22 @@ class RawMaterial extends DbModel
         ];
     }
 
-    public function get()
+    public function getRawMaterials()
     {
         $tableName = $this->tableName();
-        $sql = "SELECT raw_materials.*, suppliers.name as supplier FROM $tableName LEFT JOIN suppliers ON raw_materials.supplier_id = suppliers.id ORDER BY raw_materials.created_at DESC";
+        $sql = "SELECT raw_materials.*, suppliers.name as supplier FROM $tableName LEFT JOIN suppliers ON raw_materials.supplier_id = suppliers.id";
 
-        return static::findAll($sql);
+        return static::orderBy()->get($sql);
+    }
+
+    public function getTotalPrice()
+    {
+        $total = $this->unit_price * $this->quantity;
+        return $this->formatToCurrency($total);
+    }
+
+    public function formatToCurrency($amount): string
+    {
+        return number_format($amount, 2, '.', ',');
     }
 }

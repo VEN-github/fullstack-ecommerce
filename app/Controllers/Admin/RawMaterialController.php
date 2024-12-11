@@ -24,7 +24,7 @@ class RawMaterialController extends Controller
 
     public function index()
     {
-        $raw_materials = (new RawMaterial())->get();
+        $raw_materials = (new RawMaterial())->getRawMaterials();
 
         $params = [
             'title' => 'Raw Materials',
@@ -47,7 +47,7 @@ class RawMaterialController extends Controller
             }
         }
 
-        $suppliers = (new Supplier())->get();
+        $suppliers = (new Supplier())->where(['deleted_at' => 'IS NULL'])->orderBy('name', 'ASC')->get();
 
         $params = [
             'title' => 'Add New Raw Material',
