@@ -51,7 +51,7 @@ class Application
 
         if ($adminValue) {
             $adminPrimarykey = $this->adminClass->primaryKey();
-            $this->admin = $this->adminClass->findOne([$adminPrimarykey => $adminValue]);
+            $this->admin = $this->adminClass->where([$adminPrimarykey => $adminValue])->findOne();
         } else {
             $this->admin = null;
         }
@@ -63,7 +63,7 @@ class Application
 
         if ($userValue) {
             $userPrimarykey = $this->userClass->primaryKey();
-            $this->user = $this->userClass->findOne([$userPrimarykey => $userValue]);
+            $this->user = $this->userClass->where([$userPrimarykey => $userValue])->findOne();
         } else {
             $this->user = null;
         }

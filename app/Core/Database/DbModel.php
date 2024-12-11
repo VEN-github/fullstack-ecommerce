@@ -12,11 +12,56 @@ use App\Core\Application;
  */
 abstract class DbModel extends Model
 {
+    protected array $conditions = [];
+    protected array $orders = [];
+
     abstract public function tableName(): string;
 
     abstract public function attributes(): array;
 
     abstract public function primaryKey(): string;
+
+    public function where(array $conditions): self
+    {
+        $this->conditions = $conditions;
+        return $this;
+    }
+
+    public function orderBy(string $column = 'created_at', string $order = 'DESC'): self
+    {
+        $this->orders[] = "$column $order";
+        return $this;
+    }
+
+    public function get(): array
+    {
+        $tableName = $this->tableName();
+        $sql = "SELECT * FROM $tableName";
+        $params = [];
+
+        if (!empty($this->conditions)) {
+            $where = [];
+
+            foreach ($this->conditions as $key => $value) {
+                if (strtoupper($value) === 'IS NULL') {
+                    $where[] = "$key $value";
+                } else {
+                    $where[] = "$key = :$key";
+                    $params[$key] = $value;
+                }
+            }
+
+            $where = implode(' AND ', $where);
+            $sql .= " WHERE $where";
+        }
+
+        if (!empty($this->orders)) {
+            $order = implode(', ', $this->orders);
+            $sql .= " ORDER BY $order";
+        }
+
+        return static::findAll($sql, $params);
+    }
 
     public function save()
     {
@@ -46,13 +91,12 @@ abstract class DbModel extends Model
     {
         $tableName = $this->tableName();
         $attributes = $this->attributes();
-        $attributes[] = 'updated_at';
 
         $params = array_map(fn($attr) => "$attr = :$attr", $attributes);
 
         $statement = self::prepare(
             "UPDATE $tableName SET " .
-                implode(',', $params) .
+                implode(',', $params) . ",updated_at = :updated_at" .
                 ' WHERE ' .
                 $this->primaryKey() .
                 ' = :' .
@@ -90,27 +134,37 @@ abstract class DbModel extends Model
         return true;
     }
 
-    public function findAll(string $sql)
+    public function findAll(string $sql, array $params = [])
     {
         $statement = self::prepare($sql);
+
+        foreach ($params as $key => $value) {
+            $statement->bindValue(":$key", $value);
+        }
+
         $statement->execute();
 
         return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
     }
 
-    public function findOne($where)
+    public function findOne()
     {
         $tableName = static::tableName();
+        $sql = "SELECT * FROM $tableName";
 
-        $attributes = array_keys($where);
-        $sql = implode(' AND ', array_map(fn($attr) => "$attr = :$attr", $attributes));
-        $statement = self::prepare("SELECT * FROM $tableName WHERE $sql");
+        if (!empty($this->conditions)) {
+            $where = implode(' AND ', array_map(fn($key) => "$key = :$key", array_keys($this->conditions)));
+            $sql .= " WHERE $where";
+        }
 
-        foreach ($where as $key => $value) {
+        $statement = self::prepare($sql);
+
+        foreach ($this->conditions as $key => $value) {
             $statement->bindValue(":$key", $value);
         }
 
         $statement->execute();
+
         return $statement->fetchObject(static::class);
     }
 

@@ -68,25 +68,4 @@ class Supplier extends DbModel
             'phone' => 'Enter phone',
         ];
     }
-
-    public function get()
-    {
-        $tableName = $this->tableName();
-        $sql = "SELECT * FROM $tableName WHERE deleted_at IS NULL ORDER BY created_at DESC";
-
-        return static::findAll($sql);
-    }
-
-    public function find($id)
-    {
-        $supplier = static::findOne(['id' => $id]);
-
-        if (!$supplier) {
-            throw new \Exception('Supplier not found');
-        }
-
-        $this->loadData($supplier);
-
-        return $this;
-    }
 }

@@ -7,6 +7,7 @@ use App\Core\Middlewares\AuthMiddleware;
 use App\Models\Supplier;
 use App\Core\Request;
 use App\Core\Response;
+use App\Core\Exception\NotFoundException;
 
 /**
  * SupplierController
@@ -23,7 +24,7 @@ class SupplierController extends Controller
 
     public function index()
     {
-        $suppliers = (new Supplier())->get();
+        $suppliers = (new Supplier())->where(['deleted_at' => 'IS NULL'])->orderBy()->get();
 
         $params = [
             'title' => 'Suppliers',
@@ -57,12 +58,17 @@ class SupplierController extends Controller
     public function edit(Request $request, Response $response)
     {
         $supplier = new Supplier();
+        $id = $request->getRouteParam('id');
 
-        $supplier->find($request->getRouteParam('id'));
+        $result = $supplier->where(['id' => $id])->findOne();
+
+        if (!$result) {
+            throw new NotFoundException();
+        }
+        $supplier->loadData($result);
 
         if ($request->isPost()) {
             $supplier->loadData($request->getBody());
-            $supplier->id = $request->getRouteParam('id');
 
             if ($supplier->validate() && $supplier->update()) {
                 $response->redirect('/admin/suppliers');
@@ -81,8 +87,15 @@ class SupplierController extends Controller
     public function delete(Request $request, Response $response)
     {
         $supplier = new Supplier();
+        $id = $request->getRouteParam('id');
 
-        $supplier->find($request->getRouteParam('id'));
+        $result = $supplier->where(['id' => $id])->findOne();
+
+        if (!$result) {
+            throw new NotFoundException();
+        }
+        $supplier->loadData($result);
+
         $supplier->delete();
 
         $response->redirect('/admin/suppliers');
