@@ -1,5 +1,5 @@
 <aside
-  class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full border-r border-gray-200 bg-white pt-14 transition-transform dark:border-gray-700 dark:bg-gray-800 md:translate-x-0"
+  class="fixed left-0 top-0 z-10 h-screen w-64 -translate-x-full border-r border-gray-200 bg-white pt-14 transition-transform dark:border-gray-700 dark:bg-gray-800 md:translate-x-0"
   aria-label="Sidenav"
   id="drawer-navigation">
   <div class="h-full overflow-y-auto bg-white px-3 py-5">
@@ -10,6 +10,14 @@
           class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs('/admin') ? 'bg-gray-100' : 'group hover:bg-gray-100' ?>">
           <span class="icon-[material-symbols--dashboard] h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900"></span>
           <span class="ml-3">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a
+          href="/admin/raw-materials"
+          class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs('/admin/raw-materials') ? 'bg-gray-100' : 'group hover:bg-gray-100' ?>">
+          <span class="icon-[solar--box-bold] h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900"></span>
+          <span class="ml-3">Raw Materials</span>
         </a>
       </li>
       <li>

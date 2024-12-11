@@ -3,6 +3,7 @@
 namespace App\Core\Middlewares;
 
 use App\Core\Application;
+use App\Core\Exception\ForbiddenException;
 
 /**
  * AuthMiddleware
@@ -24,7 +25,7 @@ class AuthMiddleware extends BaseMiddleware
 
     if (!Application::$app->admin && $isAdmin) {
       if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
-        Application::$app->response->redirect('/admin/login');
+        throw new ForbiddenException();
       }
     }
 

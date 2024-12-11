@@ -17,8 +17,8 @@ class Supplier extends DbModel
     public string $address = '';
     public string $phone = '';
     public string $created_at = '';
-    public string|null $updated_at = null;
-    public string|null $deleted_at = null;
+    public ?string $updated_at = null;
+    public ?string $deleted_at = null;
 
     public function tableName(): string
     {
@@ -67,30 +67,5 @@ class Supplier extends DbModel
             'address' => 'Enter address',
             'phone' => 'Enter phone',
         ];
-    }
-
-    public function get()
-    {
-        $tableName = $this->tableName();
-
-        $statement = self::prepare(
-            "SELECT * FROM $tableName WHERE deleted_at IS NULL ORDER BY created_at DESC"
-        );
-        $statement->execute();
-
-        return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
-    }
-
-    public function find($id)
-    {
-        $supplier = static::findOne(['id' => $id]);
-
-        if (!$supplier) {
-            throw new \Exception('Supplier not found');
-        }
-
-        $this->loadData($supplier);
-
-        return $this;
     }
 }

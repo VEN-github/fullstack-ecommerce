@@ -13,8 +13,8 @@
           <tr>
             <th scope="col" class="bg-gray-600 text-white font-semibold text-sm">Name</th>
             <th scope="col" class="bg-gray-600 text-white font-semibold text-sm">Email</th>
-            <th scope="col" class="bg-gray-600 text-white font-semibold text-sm">Phone</th>
             <th scope="col" class="bg-gray-600 text-white font-semibold text-sm">Address</th>
+            <th scope="col" class="bg-gray-600 text-white font-semibold text-sm">Phone</th>
             <th scope="col" class="bg-gray-600 text-white font-semibold text-sm">Action</th>
           </tr>
         </thead>
@@ -23,8 +23,8 @@
             <tr class="odd:bg-white even:bg-gray-100 border-b">
               <th scope="row" class="whitespace-nowrap"><?= $supplier->name ?></th>
               <th scope="row" class="whitespace-nowrap"><?= $supplier->email ?></th>
-              <th scope="row" class="whitespace-nowrap"><?= $supplier->phone ?></th>
               <th scope="row" class="whitespace-nowrap"><?= $supplier->address ?></th>
+              <th scope="row" class="whitespace-nowrap"><?= $supplier->phone ?></th>
               <td scope="row" class="flex gap-4 items-center">
                 <a href="/admin/supplier/<?= $supplier->id ?>/edit" class="font-medium text-blue-600 hover:underline">Edit</a>
                 <button type="button" data-modal-target="deleteModal-<?= $supplier->id ?>" data-modal-toggle="deleteModal-<?= $supplier->id ?>" class="font-medium text-red-600 hover:underline">

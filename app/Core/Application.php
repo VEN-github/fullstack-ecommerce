@@ -21,16 +21,16 @@ class Application
     public Session $session;
     public Router $router;
     public Database $db;
-    public AdminModel|null $admin;
-    public UserModel|null $user;
+    public ?AdminModel $admin;
+    public ?UserModel $user;
     public View $view;
     public static Application $app;
-    public Controller|null $controller;
+    public ?Controller $controller;
 
     public function __construct($rootPath, array $config)
     {
-        $this->adminClass = new $config['adminClass'];
-        $this->userClass = new $config['userClass'];
+        $this->adminClass = new ($config['adminClass'])();
+        $this->userClass = new ($config['userClass'])();
         self::$ROOT_DIR = $rootPath;
         self::$app = $this;
         $this->request = new Request();
@@ -51,7 +51,7 @@ class Application
 
         if ($adminValue) {
             $adminPrimarykey = $this->adminClass->primaryKey();
-            $this->admin = $this->adminClass->findOne([$adminPrimarykey => $adminValue]);
+            $this->admin = $this->adminClass->where([$adminPrimarykey => $adminValue])->findOne();
         } else {
             $this->admin = null;
         }
@@ -63,7 +63,7 @@ class Application
 
         if ($userValue) {
             $userPrimarykey = $this->userClass->primaryKey();
-            $this->user = $this->userClass->findOne([$userPrimarykey => $userValue]);
+            $this->user = $this->userClass->where([$userPrimarykey => $userValue])->findOne();
         } else {
             $this->user = null;
         }
@@ -71,7 +71,21 @@ class Application
 
     public function run()
     {
-        echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        } catch (\Exception $e) {
+            $isAdmin = str_contains($this->request->getPath(), 'admin');
+
+            if (isset($this->controller)) {
+                $layout = $isAdmin ? 'admin_auth' : 'main';
+                $this->controller->setLayout($layout);
+            }
+
+            $view = $isAdmin ? 'errors/admin/_error' : 'errors/client/_404';
+            echo $this->view->renderView($view, [
+                'exception' => $e,
+            ]);
+        }
     }
 
     public function getController()

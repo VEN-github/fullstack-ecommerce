@@ -44,7 +44,7 @@ class LoginForm extends Model
     public function login($access_type = 'admin')
     {
         $userClass = $access_type == 'user' ? new User() : new Admin();
-        $user = $userClass->findOne(['email' => $this->email]);
+        $user = $userClass->where(['email' => $this->email])->findOne();
 
         if (!$user) {
             $this->addError(

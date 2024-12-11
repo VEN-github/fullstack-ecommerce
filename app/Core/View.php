@@ -29,7 +29,7 @@ class View
     if (isset(Application::$app->controller)) {
       $layout = Application::$app->controller->layout;
     } else {
-      $layout = str_contains($_SERVER['REQUEST_URI'], 'admin') ? 'admin_auth' : 'main';
+      $layout = str_contains(Application::$app->request->getPath(), 'admin') ? 'admin_auth' : 'main';
     }
 
     foreach ($params as $key => $value) {
