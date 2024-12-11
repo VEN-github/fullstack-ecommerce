@@ -7,7 +7,11 @@
       <li>
         <a
           href="/admin"
-          class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs('/admin') ? 'bg-gray-100' : 'group hover:bg-gray-100' ?>">
+          class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs(
+              '/admin'
+          )
+              ? 'bg-gray-100'
+              : 'group hover:bg-gray-100' ?>">
           <span class="icon-[material-symbols--dashboard] h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900"></span>
           <span class="ml-3">Dashboard</span>
         </a>
@@ -22,10 +26,26 @@
           <span class="ml-3 flex-1 whitespace-nowrap text-left">Products</span>
           <span class="icon-[tabler--chevron-down] h-5 w-5"></span>
         </button>
-        <ul id="dropdown-pages" class="space-y-2 py-2 <?= urlIs('/admin/products/categories') ? '' : 'hidden' ?>">
+        <ul id="dropdown-pages" class="space-y-2 py-2 <?= urlIs('/admin/products') ||
+        urlIs('/admin/products/categories')
+            ? ''
+            : 'hidden' ?>">
           <li>
-            <a href="/admin/products/categories" class="flex w-full items-center rounded-lg p-2 pl-11 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 <?= urlIs('/admin/products/categories') ? 'bg-gray-100' : 'group hover:bg-gray-100' ?>">
+            <a href="/admin/products/categories" class="flex w-full items-center rounded-lg p-2 pl-11 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 <?= urlIs(
+                '/admin/products/categories'
+            )
+                ? 'bg-gray-100'
+                : 'group hover:bg-gray-100' ?>">
               Categories
+            </a>
+          </li>
+          <li>
+            <a href="/admin/products" class="flex w-full items-center rounded-lg p-2 pl-11 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 <?= urlIs(
+                '/admin/products'
+            )
+                ? 'bg-gray-100'
+                : 'group hover:bg-gray-100' ?>">
+              Product List
             </a>
           </li>
         </ul>
@@ -33,7 +53,11 @@
       <li>
         <a
           href="/admin/raw-materials"
-          class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs('/admin/raw-materials') ? 'bg-gray-100' : 'group hover:bg-gray-100' ?>">
+          class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs(
+              '/admin/raw-materials'
+          )
+              ? 'bg-gray-100'
+              : 'group hover:bg-gray-100' ?>">
           <span class="icon-[solar--box-bold] h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900"></span>
           <span class="ml-3">Raw Materials</span>
         </a>
@@ -41,7 +65,11 @@
       <li>
         <a
           href="/admin/suppliers"
-          class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs('/admin/suppliers') ? 'bg-gray-100' : 'group hover:bg-gray-100' ?>">
+          class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs(
+              '/admin/suppliers'
+          )
+              ? 'bg-gray-100'
+              : 'group hover:bg-gray-100' ?>">
           <span class="icon-[mdi--truck] h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900"></span>
           <span class="ml-3">Suppliers</span>
         </a>
