@@ -13,6 +13,24 @@
         </a>
       </li>
       <li>
+        <button
+          type="button"
+          class="group flex w-full items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100"
+          aria-controls="dropdown-pages"
+          data-collapse-toggle="dropdown-pages">
+          <span class="icon-[material-symbols-light--box] h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"></span>
+          <span class="ml-3 flex-1 whitespace-nowrap text-left">Products</span>
+          <span class="icon-[tabler--chevron-down] h-5 w-5"></span>
+        </button>
+        <ul id="dropdown-pages" class="space-y-2 py-2 <?= urlIs('/admin/products/categories') ? '' : 'hidden' ?>">
+          <li>
+            <a href="/admin/products/categories" class="flex w-full items-center rounded-lg p-2 pl-11 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 <?= urlIs('/admin/products/categories') ? 'bg-gray-100' : 'group hover:bg-gray-100' ?>">
+              Categories
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
         <a
           href="/admin/raw-materials"
           class="flex items-center rounded-lg p-2 text-base font-medium text-gray-900 <?= urlIs('/admin/raw-materials') ? 'bg-gray-100' : 'group hover:bg-gray-100' ?>">
@@ -27,54 +45,6 @@
           <span class="icon-[mdi--truck] h-6 w-6 text-gray-500 transition duration-75 group-hover:text-gray-900"></span>
           <span class="ml-3">Suppliers</span>
         </a>
-      </li>
-      <li>
-        <button
-          type="button"
-          class="group flex w-full items-center rounded-lg p-2 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-          aria-controls="dropdown-pages"
-          data-collapse-toggle="dropdown-pages">
-          <svg
-            aria-hidden="true"
-            class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              fill-rule="evenodd"
-              d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
-              clip-rule="evenodd"></path>
-          </svg>
-          <span class="ml-3 flex-1 whitespace-nowrap text-left">Pages</span>
-          <svg
-            aria-hidden="true"
-            class="h-6 w-6"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              fill-rule="evenodd"
-              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </button>
-        <ul id="dropdown-pages" class="hidden space-y-2 py-2">
-          <li>
-            <a
-              href="#"
-              class="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Settings</a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Kanban</a>
-          </li>
-          <li>
-            <a
-              href="#"
-              class="group flex w-full items-center rounded-lg p-2 pl-11 text-base font-medium text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Calendar</a>
-          </li>
-        </ul>
       </li>
       <li>
         <button

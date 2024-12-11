@@ -18,4 +18,8 @@
   .btn-primary {
     @apply bg-secondary text-white hover:bg-secondary/70;
   }
+
+  [drawer-backdrop] {
+    @apply !z-[5];
+  }
 }
