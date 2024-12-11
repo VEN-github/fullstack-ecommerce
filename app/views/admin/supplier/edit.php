@@ -3,7 +3,7 @@
 use App\Core\Form\Form; ?>
 
 <section class="px-4 py-2">
-  <h2 class="mb-4 text-xl font-semibold text-gray-900">Edit Supplier</h2>
+  <h1 class="mb-4 text-xl font-semibold text-gray-900">Edit Supplier</h1>
   <div class="bg-white p-5 shadow-md rounded-lg">
     <?php $form = Form::begin('/admin/supplier/' . $model->id . '/edit', 'POST'); ?>
     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
