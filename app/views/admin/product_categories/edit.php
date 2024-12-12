@@ -6,11 +6,11 @@ use App\Core\Form\Form; ?>
   <h1 class="mb-4 text-xl font-semibold text-gray-900">Add New Category</h1>
   <div class="bg-white p-5 shadow-md rounded-lg">
     <?php $form = Form::begin('/admin/products/category/' . $model->id . '/edit', 'POST'); ?>
-    <div class="w-full mb-4">
+    <div class="mb-4">
       <?= $form->label($model, 'name') ?>
       <?= $form->field($model, 'name') ?>
     </div>
-    <div class="w-full">
+    <div>
       <?= $form->label($model, 'slug') ?>
       <?= $form->field($model, 'slug') ?>
     </div>

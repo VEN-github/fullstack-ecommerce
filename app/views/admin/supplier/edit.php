@@ -7,19 +7,19 @@ use App\Core\Form\Form; ?>
   <div class="bg-white p-5 shadow-md rounded-lg">
     <?php $form = Form::begin('/admin/supplier/' . $model->id . '/edit', 'POST'); ?>
     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-      <div class="w-full">
+      <div>
         <?= $form->label($model, 'name') ?>
         <?= $form->field($model, 'name') ?>
       </div>
-      <div class="w-full">
+      <div>
         <?= $form->label($model, 'email') ?>
         <?= $form->field($model, 'email')->emailField() ?>
       </div>
-      <div class="w-full">
+      <div>
         <?= $form->label($model, 'address') ?>
         <?= $form->field($model, 'address') ?>
       </div>
-      <div class="w-full">
+      <div>
         <?= $form->label($model, 'phone') ?>
         <?= $form->field($model, 'phone') ?>
       </div>
