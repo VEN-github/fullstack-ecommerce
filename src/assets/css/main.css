@@ -23,3 +23,12 @@
     @apply !z-[5];
   }
 }
+
+.ts-control {
+  @apply !border-0 !bg-transparent !p-0 !text-base;
+}
+
+.ts-dropdown,
+.ts-control input {
+  @apply !text-base;
+}

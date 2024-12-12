@@ -22,14 +22,11 @@ class SelectField extends BaseField
     public function renderInput(): string
     {
         return sprintf(
-            '
-      <select id="%s" name="%s" class="form-input %s">
-        <option disabled selected>%s</option>
-        %s  
-      </select>',
+            '<select id="%s" name="%s" class="select form-input %s" placeholder="%s"><option value="" selected disabled>%s</option>%s</select>',
             $this->attribute,
             $this->attribute,
             $this->model->hasError($this->attribute) ? 'border-error' : 'border-gray-300',
+            $this->model->getPlaceholder($this->attribute),
             $this->model->getPlaceholder($this->attribute),
             $this->renderOption()
         );
