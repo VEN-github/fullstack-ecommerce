@@ -4,6 +4,8 @@ namespace App\Controllers\Admin;
 
 use App\Core\Controller;
 use App\Core\Middlewares\AuthMiddleware;
+use App\Models\Product;
+use App\Models\ProductCategory;
 
 /**
  * ProductController
@@ -29,8 +31,13 @@ class ProductController extends Controller
 
     public function create()
     {
+        $product = new Product();
+        $categories = (new ProductCategory())->where(['deleted_at' => 'IS NULL'])->orderBy('name', 'ASC')->get();
+
         $params = [
             'title' => 'Add New Product',
+            'model' => $product,
+            'categories' => $categories
         ];
 
         return $this->render('admin/products/create', $params);
