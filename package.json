@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "@iconify/json": "^2.2.276",
+    "ckeditor5": "^44.1.0",
     "flowbite": "^2.5.2",
     "simple-datatables": "^9.2.1",
     "tom-select": "^2.4.1"

@@ -1,7 +1,6 @@
 <?php
 
-use App\Core\Form\Form;
-?>
+use App\Core\Form\Form; ?>
 
 <section class="px-4 py-2">
   <h1 class="mb-4 text-xl font-semibold text-gray-900">Add New Product</h1>
@@ -43,6 +42,17 @@ use App\Core\Form\Form;
           <div class="mb-4">
             <?= $form->label($model, 'category_id') ?>
             <?= $form->select($model, 'category_id', $categories) ?>
+          </div>
+          <div class="mb-4">
+            <?= $form->label($model, 'description') ?>
+            <div
+              id="editor-container"
+              class="editor-container editor-container_classic-editor editor-container_include-style editor-container_include-word-count">
+              <div class="editor-container__editor">
+                <textarea name="description" id="editor"></textarea>
+              </div>
+              <div class="editor_container__word-count" id="editor-word-count"></div>
+            </div>
           </div>
           <?= Form::end() ?>
         </div>

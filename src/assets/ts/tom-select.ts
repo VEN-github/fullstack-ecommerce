@@ -1,6 +1,10 @@
 import TomSelect from 'tom-select'
 import 'tom-select/dist/css/tom-select.css'
 
-new TomSelect('.select', {
-  maxItems: 1
-})
+const select = document.querySelectorAll('.select')
+
+if (select.length > 0) {
+  new TomSelect('.select', {
+    maxItems: 1
+  })
+}
