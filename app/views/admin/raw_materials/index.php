@@ -22,7 +22,9 @@
           <?php foreach ($raw_materials as $material): ?>
             <tr class="odd:bg-white even:bg-gray-100 border-b">
               <th scope="row" class="whitespace-nowrap"><?= $material->name ?></th>
-              <th scope="row" class="whitespace-nowrap flex items-center gap-1"><span class="icon-[clarity--peso-line]" style="width: 15px; height: 15px;"></span><?= $material->formatToCurrency($material->unit_price) ?></th>
+              <th scope="row" class="whitespace-nowrap flex items-center gap-1"><span class="icon-[clarity--peso-line]" style="width: 15px; height: 15px;"></span><?= $material->formatToCurrency(
+                  $material->unit_price
+              ) ?></th>
               <th scope="row" class="whitespace-nowrap"><?= $material->quantity ?></th>
               <th scope="row" class="whitespace-nowrap flex items-center gap-1"><span class="icon-[clarity--peso-line]" style="width: 15px; height: 15px;"></span><?= $material->getTotalPrice() ?></th>
               <th scope="row" class="whitespace-nowrap"><?= $material->supplier ?></th>

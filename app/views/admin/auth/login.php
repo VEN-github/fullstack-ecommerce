@@ -1,7 +1,6 @@
 <?php
 
-use App\Core\Form\Form;
-?>
+use App\Core\Form\Form; ?>
 
 <section class="bg-gray-50">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -14,10 +13,10 @@ use App\Core\Form\Form;
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
           Sign in to your account
         </h1>
-        <?php $form = Form::begin('/admin/login', 'POST') ?>
+        <?php $form = Form::begin('/admin/login', 'POST'); ?>
         <div class="mb-4">
           <?= $form->label($model, 'email') ?>
-          <?= $form->field($model, 'email')->emailField(); ?>
+          <?= $form->field($model, 'email')->emailField() ?>
         </div>
         <div>
           <?= $form->label($model, 'password') ?>
@@ -27,7 +26,7 @@ use App\Core\Form\Form;
           <a href="#" class="text-sm font-medium text-primary hover:underline">Forgot password?</a>
         </div>
         <button type="submit" class="btn btn-primary w-full">Sign in</button>
-        <?php Form::end() ?>
+        <?php Form::end(); ?>
       </div>
     </div>
   </div>

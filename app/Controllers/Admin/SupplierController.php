@@ -24,7 +24,10 @@ class SupplierController extends Controller
 
     public function index()
     {
-        $suppliers = (new Supplier())->where(['deleted_at' => 'IS NULL'])->orderBy()->get();
+        $suppliers = (new Supplier())
+            ->where(['deleted_at' => 'IS NULL'])
+            ->orderBy()
+            ->get();
 
         $params = [
             'title' => 'Suppliers',

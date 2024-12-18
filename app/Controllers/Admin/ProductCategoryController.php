@@ -24,11 +24,14 @@ class ProductCategoryController extends Controller
 
     public function index()
     {
-        $categories = (new ProductCategory())->where(['deleted_at' => 'IS NULL'])->orderBy()->get();
+        $categories = (new ProductCategory())
+            ->where(['deleted_at' => 'IS NULL'])
+            ->orderBy()
+            ->get();
 
         $params = [
             'title' => 'Categories',
-            'categories' => $categories
+            'categories' => $categories,
         ];
 
         return $this->render('admin/product_categories/index', $params);
@@ -49,7 +52,7 @@ class ProductCategoryController extends Controller
 
         $params = [
             'title' => 'Add New Category',
-            'model' => $category
+            'model' => $category,
         ];
 
         return $this->render('admin/product_categories/create', $params);

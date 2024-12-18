@@ -9,47 +9,49 @@ namespace App\Core;
  */
 class View
 {
-  public string $title = '';
+    public string $title = '';
 
-  public function renderView($view, $params = [])
-  {
-    $layoutContent = $this->layoutContent($params);
-    $viewContent = $this->renderOnlyView($view, $params);
-    return str_replace('{{content}}', $viewContent, $layoutContent);
-  }
-
-  public function renderContent($viewContent)
-  {
-    $layoutContent = $this->layoutContent();
-    return str_replace('{{content}}', $viewContent, $layoutContent);
-  }
-
-  protected function layoutContent($params = [])
-  {
-    if (isset(Application::$app->controller)) {
-      $layout = Application::$app->controller->layout;
-    } else {
-      $layout = str_contains(Application::$app->request->getPath(), 'admin') ? 'admin_auth' : 'main';
+    public function renderView($view, $params = [])
+    {
+        $layoutContent = $this->layoutContent($params);
+        $viewContent = $this->renderOnlyView($view, $params);
+        return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
-    foreach ($params as $key => $value) {
-      $$key = $value;
+    public function renderContent($viewContent)
+    {
+        $layoutContent = $this->layoutContent();
+        return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
-    ob_start();
-    include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
-    return ob_get_clean();
-  }
+    protected function layoutContent($params = [])
+    {
+        if (isset(Application::$app->controller)) {
+            $layout = Application::$app->controller->layout;
+        } else {
+            $layout = str_contains(Application::$app->request->getPath(), 'admin')
+                ? 'admin_auth'
+                : 'main';
+        }
 
-  protected function renderOnlyView($view, $params)
-  {
-    foreach ($params as $key => $value) {
-      $$key = $value;
+        foreach ($params as $key => $value) {
+            $$key = $value;
+        }
+
+        ob_start();
+        include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
+        return ob_get_clean();
     }
 
-    ob_start();
-    $viewPath = Application::$ROOT_DIR . "/views/$view.php";
-    include_once $viewPath;
-    return ob_get_clean();
-  }
+    protected function renderOnlyView($view, $params)
+    {
+        foreach ($params as $key => $value) {
+            $$key = $value;
+        }
+
+        ob_start();
+        $viewPath = Application::$ROOT_DIR . "/views/$view.php";
+        include_once $viewPath;
+        return ob_get_clean();
+    }
 }

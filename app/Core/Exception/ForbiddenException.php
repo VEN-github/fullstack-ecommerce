@@ -9,12 +9,12 @@ namespace App\Core\Exception;
  */
 class ForbiddenException extends \Exception
 {
-  protected $code = 403;
-  protected $title = "Forbidden";
-  protected $message = "You don't have permission to access this page.";
+    protected $code = 403;
+    protected $title = 'Forbidden';
+    protected $message = "You don't have permission to access this page.";
 
-  public function getTitle(): string
-  {
-    return $this->title;
-  }
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
 }

@@ -11,19 +11,19 @@ use App\Core\Model;
  */
 class TextareaField extends BaseField
 {
-  public function __construct(Model $model, string $attribute)
-  {
-    parent::__construct($model, $attribute);
-  }
+    public function __construct(Model $model, string $attribute)
+    {
+        parent::__construct($model, $attribute);
+    }
 
-  public function renderInput(): string
-  {
-    return sprintf(
-      '<textarea id="%s" name="%s" value="%s" class="form-input %s"></textarea>',
-      $this->attribute,
-      $this->attribute,
-      $this->model->{$this->attribute},
-      $this->model->hasError($this->attribute) ? 'border-error' : 'border-gray-300',
-    );
-  }
+    public function renderInput(): string
+    {
+        return sprintf(
+            '<textarea id="%s" name="%s" value="%s" class="form-input %s"></textarea>',
+            $this->attribute,
+            $this->attribute,
+            $this->model->{$this->attribute},
+            $this->model->hasError($this->attribute) ? 'border-error' : 'border-gray-300'
+        );
+    }
 }

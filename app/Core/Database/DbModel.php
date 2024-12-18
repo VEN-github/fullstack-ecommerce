@@ -96,7 +96,8 @@ abstract class DbModel extends Model
 
         $statement = self::prepare(
             "UPDATE $tableName SET " .
-                implode(',', $params) . ",updated_at = :updated_at" .
+                implode(',', $params) .
+                ',updated_at = :updated_at' .
                 ' WHERE ' .
                 $this->primaryKey() .
                 ' = :' .
@@ -153,7 +154,10 @@ abstract class DbModel extends Model
         $sql = "SELECT * FROM $tableName";
 
         if (!empty($this->conditions)) {
-            $where = implode(' AND ', array_map(fn($key) => "$key = :$key", array_keys($this->conditions)));
+            $where = implode(
+                ' AND ',
+                array_map(fn($key) => "$key = :$key", array_keys($this->conditions))
+            );
             $sql .= " WHERE $where";
         }
 

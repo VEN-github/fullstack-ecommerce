@@ -17,57 +17,57 @@ use App\Core\Application;
  */
 class AuthController extends Controller
 {
-  public function __construct()
-  {
-    $this->registerMiddleware(new GuestMiddleware(['register', 'login']));
-  }
-
-  public function register(Request $request, Response $response)
-  {
-    $user = new User();
-    $loginForm = new LoginForm();
-
-    if ($request->isPost()) {
-      $user->loadData($request->getBody());
-
-      if ($user->validate() && $user->save()) {
-        $loginForm->loadData($request->getBody());
-        $loginForm->login('user');
-        $response->redirect('/');
-        return;
-      }
+    public function __construct()
+    {
+        $this->registerMiddleware(new GuestMiddleware(['register', 'login']));
     }
 
-    $params = [
-      'title' => 'Create Account',
-      'model' => $user
-    ];
-    return $this->render('client/auth/register', $params);
-  }
+    public function register(Request $request, Response $response)
+    {
+        $user = new User();
+        $loginForm = new LoginForm();
 
-  public function login(Request $request, Response $response)
-  {
-    $loginForm = new LoginForm();
+        if ($request->isPost()) {
+            $user->loadData($request->getBody());
 
-    if ($request->isPost()) {
-      $loginForm->loadData($request->getBody());
+            if ($user->validate() && $user->save()) {
+                $loginForm->loadData($request->getBody());
+                $loginForm->login('user');
+                $response->redirect('/');
+                return;
+            }
+        }
 
-      if ($loginForm->validate() && $loginForm->login('user')) {
-        $response->redirect('/');
-        return;
-      }
+        $params = [
+            'title' => 'Create Account',
+            'model' => $user,
+        ];
+        return $this->render('client/auth/register', $params);
     }
 
-    $params = [
-      'title' => 'Login',
-      'model' => $loginForm
-    ];
-    return $this->render('client/auth/login', $params);
-  }
+    public function login(Request $request, Response $response)
+    {
+        $loginForm = new LoginForm();
 
-  public function logout(Request $request, Response $response)
-  {
-    Application::$app->logout('user');
-    $response->redirect('/');
-  }
+        if ($request->isPost()) {
+            $loginForm->loadData($request->getBody());
+
+            if ($loginForm->validate() && $loginForm->login('user')) {
+                $response->redirect('/');
+                return;
+            }
+        }
+
+        $params = [
+            'title' => 'Login',
+            'model' => $loginForm,
+        ];
+        return $this->render('client/auth/login', $params);
+    }
+
+    public function logout(Request $request, Response $response)
+    {
+        Application::$app->logout('user');
+        $response->redirect('/');
+    }
 }

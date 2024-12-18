@@ -1,7 +1,6 @@
 <?php
 
-use App\Core\Application;
-?>
+use App\Core\Application; ?>
 
 <?php require_once Application::$ROOT_DIR . '/views/partials/client/header.php'; ?>
 

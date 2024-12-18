@@ -11,7 +11,7 @@ use App\Core\Database\DbModel;
  */
 abstract class AdminModel extends DbModel
 {
-  abstract public function getDisplayName(): string;
+    abstract public function getDisplayName(): string;
 
-  abstract public function getEmail(): string;
+    abstract public function getEmail(): string;
 }

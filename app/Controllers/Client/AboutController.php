@@ -11,12 +11,12 @@ use App\Core\Controller;
  */
 class AboutController extends Controller
 {
-  public function index()
-  {
-    $params = [
-      'title' => 'About Us'
-    ];
+    public function index()
+    {
+        $params = [
+            'title' => 'About Us',
+        ];
 
-    return $this->render('client/about/index', $params);
-  }
+        return $this->render('client/about/index', $params);
+    }
 }

@@ -32,12 +32,15 @@ class ProductController extends Controller
     public function create()
     {
         $product = new Product();
-        $categories = (new ProductCategory())->where(['deleted_at' => 'IS NULL'])->orderBy('name', 'ASC')->get();
+        $categories = (new ProductCategory())
+            ->where(['deleted_at' => 'IS NULL'])
+            ->orderBy('name', 'ASC')
+            ->get();
 
         $params = [
             'title' => 'Add New Product',
             'model' => $product,
-            'categories' => $categories
+            'categories' => $categories,
         ];
 
         return $this->render('admin/products/create', $params);

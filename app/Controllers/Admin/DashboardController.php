@@ -12,18 +12,18 @@ use App\Core\Middlewares\AuthMiddleware;
  */
 class DashboardController extends Controller
 {
-  public function __construct()
-  {
-    $this->registerMiddleware(new AuthMiddleware(['index']));
-  }
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware(['index']));
+    }
 
-  public function index()
-  {
-    $this->setLayout('admin');
-    $params = [
-      'title' => 'Dashboard'
-    ];
+    public function index()
+    {
+        $this->setLayout('admin');
+        $params = [
+            'title' => 'Dashboard',
+        ];
 
-    return $this->render('admin/dashboard/index', $params);
-  }
+        return $this->render('admin/dashboard/index', $params);
+    }
 }

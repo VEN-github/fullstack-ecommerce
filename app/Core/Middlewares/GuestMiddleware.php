@@ -11,27 +11,33 @@ use App\Core\Application;
  */
 class GuestMiddleware extends BaseMiddleware
 {
-  protected array $actions;
+    protected array $actions;
 
-  public function __construct(array $actions = [])
-  {
-    $this->actions = $actions;
-  }
-
-  public function execute()
-  {
-    $isAdmin = str_contains(Application::$app->request->getPath(), 'admin');
-
-    if (Application::$app->admin && $isAdmin) {
-      if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
-        Application::$app->response->redirect('/admin');
-      }
+    public function __construct(array $actions = [])
+    {
+        $this->actions = $actions;
     }
 
-    if (Application::$app->user && !$isAdmin) {
-      if (empty($this->actions) || in_array(Application::$app->controller->action, $this->actions)) {
-        Application::$app->response->redirect('/');
-      }
+    public function execute()
+    {
+        $isAdmin = str_contains(Application::$app->request->getPath(), 'admin');
+
+        if (Application::$app->admin && $isAdmin) {
+            if (
+                empty($this->actions) ||
+                in_array(Application::$app->controller->action, $this->actions)
+            ) {
+                Application::$app->response->redirect('/admin');
+            }
+        }
+
+        if (Application::$app->user && !$isAdmin) {
+            if (
+                empty($this->actions) ||
+                in_array(Application::$app->controller->action, $this->actions)
+            ) {
+                Application::$app->response->redirect('/');
+            }
+        }
     }
-  }
 }

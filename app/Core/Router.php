@@ -121,7 +121,9 @@ class Router
     {
         $path = $this->request->getPath();
         $method = $this->request->method();
-        $callback = isset($this->route_map[$method][$path]) ? $this->route_map[$method][$path] : false;
+        $callback = isset($this->route_map[$method][$path])
+            ? $this->route_map[$method][$path]
+            : false;
 
         if (!$callback) {
             $callback = $this->getCallback();

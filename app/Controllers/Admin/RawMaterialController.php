@@ -47,7 +47,10 @@ class RawMaterialController extends Controller
             }
         }
 
-        $suppliers = (new Supplier())->where(['deleted_at' => 'IS NULL'])->orderBy('name', 'ASC')->get();
+        $suppliers = (new Supplier())
+            ->where(['deleted_at' => 'IS NULL'])
+            ->orderBy('name', 'ASC')
+            ->get();
 
         $params = [
             'title' => 'Add New Raw Material',
